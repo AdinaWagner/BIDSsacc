@@ -1,3 +1,6 @@
 [submodule "install"]
 	path = install
 	url = adina@medusa.ovgu.de:/home/data/psyinf/scratch/studyforrest-data-eyemovementlabels
+[submodule "aligned"]
+	path = aligned
+	url = adina@medusa.ovgu.de:/home/data/psyinf/forrest_gump/collection/aligned/
