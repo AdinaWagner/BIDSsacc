@@ -1,0 +1,111 @@
+#!/bin/bash
+
+# This file is intended to restructure a variety of different inputs in
+# BIDS_sacc into a BIDS conform dataset for further analysis with nipype and
+# fitlins. Previously you will need to datalad install a number of datasets.
+
+####previously run:
+# mkdir inputs
+# datalad install -d . -s
+# adina@medusa.ovgu.de:/home/data/psyinf/forrest_gump/collection/aligned/ +
+# datalad get
+# datalad install -d . -s
+# adina@medusa.ovgu.de:/home/data/psyinf/scratch/studyforrest-data-eyemovementlabels
+# + datalad get
+# scp -r adina@medusa.ovgu.de:~/pd/adina/direction_saccades/inputs/annotation_confounds inputs/annotation_confounds
+# mv aligned inputs
+# mv eyemovementlabels inputs
+##currently not yet run:
+#datalad install -d . -s git@github.com:psychoinformatics-de/studyforrest-data-phase2.git
+
+set -e
+set -u
+
+#find subjects
+#subs="sub-01 sub-02 sub-03 sub-04 sub-05 sub-06 sub-09 sub-10 sub-14 sub-15 sub-16 sub-17 sub-18 sub-19 sub-20"
+subs=$(find inputs/aligned -type d -name "sub-*" -printf "%f\n" | sort)
+
+#prereqs
+initial_dir=../BIDS_sacc
+session=ses-movie
+task=task-avmovie
+# create directories if the don't exists yet
+for sub in $subs; do
+    sub_dir=$sub
+    [ ! -d "${sub_dir}/${session}/func" ] && mkdir -p "${sub_dir}/${session}/func"
+    [ ! -d "${sub_dir}/${session}/anat" ] && mkdir -p "${sub_dir}/${session}/anat"
+    [ ! -d "${sub_dir}/${session}/xfm" ] && mkdir -p "${sub_dir}/${session}/xfm"
+    [ ! -d "${sub_dir}/${session}/eyetrack" ] && mkdir -p "${sub_dir}/${session}/eyetrack"
+done
+
+[ ! -d "models" ] && mkdir -p "models"
+
+## move aligned bold files, motion parameter files and annotation confound files
+## into  into respective sub_dir/func dir
+#for sub in $subs; do
+#    cp inputs/aligned/${sub}/in_bold3Tp2/${sub}_task-avmovie_run-*_bold_mcparams.txt ${sub}/${session}/func
+#    for i in $(find ${sub}/${session}/func/*mcparams.txt); do
+#        mv $i $(echo $i | sed -e 's/task-avmovie/ses-movie_task-avmovie/');
+#    done
+#    for i in $(find ${sub}/${session}/func/*mcparams.txt); do
+#        mv $i $(echo $i | sed -e 's/mcparams.txt/desc-mcparams_motion.tsv/');
+#    done
+#    cp inputs/aligned/${sub}/in_bold3Tp2/${sub}_task-avmovie_run-*_bold.nii.gz ${sub}/${session}/func
+#    for i in $(find ${sub}/${session}/func/*.nii.gz); do
+#        mv $i $(echo $i | sed -e 's/task/ses-movie_task/');
+#    done
+#    cp inputs/eyemovementlabels/${sub}/*.tsv ${sub}/${session}/eyetrack
+#    for i in $(find ${sub}/${session}/eyetrack/*.tsv); do
+#       mv $i $(echo $i | sed -e 's/task-movie/ses-movie_task-avmovie/');
+#    done
+#    cp inputs/annotation_confounds/fg_ad_run-*_lrdiff.ev3 ${sub}/${session}/func
+#    for i in $(find ${sub}/${session}/func/*lrdiff.ev3); do
+#        mv $i $(echo $i | sed -e "s/fg_ad/${sub}_${session}_${task}/");
+#    done
+#    for i in $(find ${sub}/${session}/func/*lrdiff.ev3); do
+#        mv $i $(echo $i | sed -e 's/lrdiff.ev3/desc-lrdiff_regressors.tsv/');
+#    done
+#    cp inputs/annotation_confounds/fg_ad_run-*_rms.ev3 ${sub}/${session}/func
+#    for i in $(find ${sub}/${session}/func/*rms.ev3); do
+#        mv $i $(echo $i | sed -e "s/fg_ad/${sub}_${session}_${task}/");
+#    done
+#    for i in $(find ${sub}/${session}/func/*rms.ev3); do
+#        mv $i $(echo $i | sed -e 's/rms.ev3/desc-rms_regressors.tsv/');
+#    done
+#    cp inputs/annotation_confounds/fg_av_ger_pd_run-*.txt ${sub}/${session}/func
+#    for i in $(find ${sub}/${session}/func/fg_av*.txt); do
+#        mv $i $(echo $i | sed -e "s/fg_av_ger_pd/${sub}_${session}_${task}/");
+#    done
+#    for i in $(find ${sub}/${session}/func/*.txt); do
+#        mv $i $(echo $i | sed -e 's/.txt/_desc-pd_regressors.tsv/');
+#    done
+#done
+
+## generate .json file to accompany mcparams file
+#for sub in $subs; do
+#    for run in $(seq 1 8); do
+#        cat <<EOT >  ${sub}/${session}/func/${sub}_${session}_${task}_run-${run}_bold_desc-mcparams_motion.json
+#{
+#    "X": "movement in X direction",
+#    "Y": "movement in Y direction",
+#    "Z": "movement in Z direction",
+#    "RotX": "rotation in x direction",
+#    "RotY": "rotation in y direction",
+#    "RotZ": "rotation in z direction"
+#}
+#EOT
+#    done
+#done
+#
+## copy all eyemovementlabel files into their respective sub_dir/eyetrack dir
+for sub in $subs; do
+    cp inputs/eyemovementlabels/${sub}/*.tsv ${sub}/${session}/eyetrack/
+    for i in $(find ${sub}/${session}/eyetrack/*.tsv); do
+        mv $i $(echo $i | sed -e "s/task-movie/${session}_${task}/");
+    done
+    for i in $(find ${sub}/${session}/eyetrack/*tsv); do
+        mv $i $(echo $i | sed -e 's/events.tsv/desc-remodnav_events.tsv/')
+    done
+done
+
+
