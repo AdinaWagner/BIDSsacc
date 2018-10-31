@@ -31,8 +31,7 @@ from nipype import SelectFiles, DataSink, Function, LooseVersion
 import nipype.algorithms.rapidart as ra
 from nipype.utils.filemanip import filename_to_list
 
-from nipype.workflows.fmri.fsl import (#create_featreg_preproc,
-                                       create_modelfit_workflow,
+from nipype.workflows.fmri.fsl import (create_modelfit_workflow,
                                        create_fixed_effects_flow)
 
 from os.path import join as opj
@@ -678,29 +677,21 @@ def create_susan_smooth(name="susan_smooth", separate_masks=True):
 """
 Define helpful functions
 """
-
-
-
-
-
-"""
-Define helpful functions
-"""
 def ev3_info(subject_id,
             run_id,
             confinfo,
             experiment_dir,
             session_id,
             task_id,
-            eyemovement_dir): #TODO: information in infonode and argparse
+            eyemovement_dir):
     """
     This function creates ev3 files from classified/labeled eyemovements,
     extracts information from the ev3 files about 'conditions', onsets and
-    durations and returns everything in a Bunch structure.
-    "subject_id" should have format 'sub-01'
-    "run_id" should have format 'run-1'
-    "ev3info" should be a path
-    "confinfo" should be a path
+    durations and returns and saves everything in a dataframe-event file.
+    "subject_id", "run_id", "session_id", "task_id" should be strings following
+    the format 'sub-01', 'run-1', 'ses-movie', 'task-avmovie' or similar.
+    "confinfo", "experiment_dir", "eyemovement_dir" should be a paths or
+    directory names
     """
     import pandas as pd
     import numpy as np
@@ -708,14 +699,12 @@ def ev3_info(subject_id,
     import os
     import glob
     import math
-   ####### from nipype.interfaces.base import Bunch
-    #create ev3 files from scratch
+
     path = opj(experiment_dir, subject_id, session_id, eyemovement_dir, '*{}_desc-remodnav_events*.tsv'.format(run_id))
     infile = glob.glob(path)[0]
-
     subs = ["sub-01", "sub-02", "sub-03", "sub-04", "sub-05", "sub-06", "sub-09",
     "sub-10", "sub-14", "sub-15", "sub-16", "sub-17", "sub-18", "sub-19", "sub-20"]
-
+    #pixel need to be converted to visual degrees.
     if subject_id in subs:
         conversion_factor = 0.018558123256059607
     #this would be for lab subjects
@@ -797,15 +786,13 @@ def ev3_info(subject_id,
 
     con_rms_path = opj(experiment_dir, subject_id, confinfo, '*{}*desc-rms*'.format(run_id))
     con_rms=glob.glob(con_rms_path)[0]
-    rms = pd.read_csv(con_rms, sep=" ", header=None, names=['onset', 'duration',
-    'amplitude'])
+    rms = pd.read_csv(con_rms, sep=" ", header=None, names=['onset', 'duration', 'amplitude'])
     trial_dummy_rms=np.repeat('RMS', len(rms))
     rms['trial_type']=trial_dummy_rms
 
-    con_pd_path = opj(experiment_dir, subject_id, confinfo, '*{}*desc-pd*'.format(run_id))
+    con_pd_path = opj(experiment_dir, subject_id, confinfo,'*{}*desc-pd*'.format(run_id))
     con_pd=glob.glob(con_pd_path)[0]
-    cpd = pd.read_csv(con_pd, sep='\t', header=None, names=['onset', 'duration',
-    'amplitude'])
+    cpd = pd.read_csv(con_pd, sep='\t', header=None, names=['onset', 'duration', 'amplitude'])
     trial_dummy_cpd=np.repeat('PD', len(cpd))
     cpd['trial_type']=trial_dummy_cpd
 
@@ -814,151 +801,12 @@ def ev3_info(subject_id,
     #reindexing
     newindex=['onset', 'duration', 'trial_type', 'amplitude']
     df_events = df_event.reindex(newindex, axis='columns')
-    #drop angle column
-    #df_events.drop('angle', axis='columns')
-    #df_events=df_events.drop('angle', axis='columns')
 
     outfilepath=opj(experiment_dir, subject_id, confinfo)
     df_events.to_csv(opj(outfilepath,'{}_{}_{}_{}_events.tsv'.format(subject_id,
     session_id, task_id, run_id)), header=True, index=False, sep='\t')
     return df_events
 
-
-#
-#def ev3_info(subject_id,
-#            run_id,
-#            confinfo,
-#            experiment_dir,
-#            outfilepath,
-#            eyemovement_dir): #TODO: information in infonode and argparse
-#    """
-#    This function creates ev3 files from classified/labeled eyemovements,
-#    extracts information from the ev3 files about 'conditions', onsets and
-#    durations and returns everything in a Bunch structure.
-#    "subject_id" should have format 'sub-01'
-#    "run_id" should have format 'run-1'
-#    "ev3info" should be a path
-#    "confinfo" should be a path
-#    """
-#    import pandas as pd
-#    import numpy as np
-#    from os.path import join as opj
-#    import os
-#    import glob
-#    import math
-#    from nipype.interfaces.base import Bunch
-#    #create ev3 files from scratch
-#    path = opj(eyemovement_dir, subject_id, '*{}_events*.tsv'.format(run_id))
-#    infile = glob.glob(path)[0]
-#
-#    subs = ["sub-01", "sub-02", "sub-03", "sub-04", "sub-05", "sub-06", "sub-09",
-#    "sub-10", "sub-14", "sub-15", "sub-16", "sub-17", "sub-18", "sub-19", "sub-20"]
-#
-#    if subject_id in subs:
-#        conversion_factor = 0.018558123256059607
-#    #this would be for lab subjects
-#    else:
-#        conversion_factor = 0.026671197202630847
-#
-#   #length and angle calculation basics
-#    def cart2pol(x, y):
-#        rho = np.sqrt(x**2 + y**2)
-#        theta = np.arctan2(y,x)
-#        return(rho, theta)
-#
-#    #length in visual degrees and angle basics
-#    def calc_polar(x_start, x_end, y_start, y_end, conversion_factor):
-#        '''function takes start and end coordinates in x and y direction and the
-#        appropriate conversion factor (lab or mri)'''
-#        #calculate saccade length from raw eye tracking data
-#        x, y = x_end-x_start, y_end - y_start
-#        #transform via cart2pol. rho = length, theta = angle
-#        rho, theta = cart2pol(x, y)
-#        #convert rho in px into visual degrees
-#        vis_deg = rho * conversion_factor
-#        return vis_deg, theta
-#
-#    #extract and calculate necessary measures
-#    def polar_coordinates(data, conversion_factor):
-#        '''data is an array with columns time, x_start, x_end, y_start, y_end.
-#        Conversion factor is either mri_deg_per_px or lab_deg_per_px'''
-#        angles = []
-#        lengths = []
-#        time = data['onset']    #extract time from data (first col)
-#        duration = data['duration']      #extract duration from data
-#        for row in data:
-#            length, angle = calc_polar(row['start_x'], row['end_x'], row['start_y'],
-#                            row['end_y'], conversion_factor)
-#            angles.append(angle)
-#            lengths.append(length)
-#        return time.tolist(), duration.tolist(), angles, lengths
-#
-#
-#    df = np.recfromcsv(infile, delimiter ='\t',
-#                        dtype = {'names':('onset', 'duration', 'label',
-#                        'start_x', 'start_y', 'end_x', 'end_y', 'amp',
-#                        'peak_vel', 'med_vel', 'avg_vel'),
-#                        'formats':('f8', 'f8', 'U10', 'f8', 'f8', 'f8', 'f8',
-#                        'f8', 'f8', 'f8', 'f8')})
-#    #take all types of saccades
-#    data = df[(df['label']=='SACC') | (df['label']=='ISAC')]
-#    #calculate angles and lengths, extract times and durations
-#    time, duration, angles, lengths = polar_coordinates(data, conversion_factor)
-#    trial_dummy = np.repeat('nothing', len(time))
-#    trans_data = np.column_stack((time, duration, angles, lengths))
-#    up_idx = np.where(np.logical_and(trans_data[:,2] >= 1.308996939,
-#    trans_data[:,2]<= 1.8325957146))[0]
-#    down_idx = np.where(np.logical_and(trans_data[:,2] <= -1.308996939,
-#    trans_data[:,2]>= -1.8325957146))[0]
-#    left_idx = np.where(np.logical_or(trans_data[:,2] >= 2.8797932658,
-#    trans_data[:,2]<= -2.8797932658))[0]
-#    right_idx = np.where(np.logical_and(trans_data[:,2] <= 0.2617993878,
-#    trans_data[:,2]>= -0.2617993878))[0]
-#    for i in up_idx:
-#        trial_dummy[i]="UP"
-#    for i in down_idx:
-#        trial_dummy[i]="DOWN"
-#    for i in left_idx:
-#        trial_dummy[i]="LEFT"
-#    for i in right_idx:
-#        trial_dummy[i]="RIGHT"
-#    #combine into dataframe
-#    rec = np.core.records.fromarrays(trans_data.transpose(), names='onset, duration, angle, amplitude', formats='f8, f8, f8, f8')
-#    df_saccs = pd.DataFrame.from_records(rec)
-#    df_saccs['trial_type']=trial_dummy.tolist()
-#
-#    con_lrdiff_path = opj(experiment_dir, confinfo, '*{}*lrdiff*'.format(run_id))
-#    con_lrdiff = glob.glob(con_lrdiff_path)[0]
-#    lrdiff = pd.read_csv(con_lrdiff, sep=" ", header=None, names=['onset', 'duration', 'amplitude'])
-#    trial_dummy_lrdiff = np.repeat('LRDIFF', len(lrdiff))
-#    lrdiff['trial_type']=trial_dummy_lrdiff
-#
-#    con_rms_path = opj(experiment_dir, confinfo, '*{}*rms*'.format(run_id))
-#    con_rms=glob.glob(con_rms_path)[0]
-#    rms = pd.read_csv(con_rms, sep=" ", header=None, names=['onset', 'duration',
-#    'amplitude'])
-#    trial_dummy_rms=np.repeat('RMS', len(rms))
-#    rms['trial_type']=trial_dummy_rms
-#
-#    con_pd_path = opj(experiment_dir, confinfo, '*pd*{}*'.format(run_id))
-#    con_pd=glob.glob(con_pd_path)[0]
-#    cpd = pd.read_csv(con_pd, sep='\t', header=None, names=['onset', 'duration',
-#    'amplitude'])
-#    trial_dummy_cpd=np.repeat('PD', len(cpd))
-#    cpd['trial_type']=trial_dummy_cpd
-#
-#    dfs = [df_saccs, lrdiff, rms, cpd]
-#    df_event = pd.concat(dfs)
-#    #reindexing
-#    df_events = df_event.reindex(df_saccs.columns, axis=1)
-#    #drop angle column
-#    df_events.drop('angle', axis='columns')
-#    df_events=df_events.drop('angle', axis='columns')
-#
-#    df_events.to_csv(opj(outfilepath,'{}_{}_{}_{}_events.tsv'.format(subject_id,
-#    session_id, task_id, run_id)), header=True, index=False, sep='\t')
-#    return df_events
-#
 
 def sort_copes(files):
     numelements = len(files[0])
@@ -1128,330 +976,93 @@ def preprocess_forrest(experiment_dir,
     return preprocwf
 
 
-#def preprocess_forrest(subject=None,
-#                        run=None,
-#                        fwhm=5.0,
-#                        run_num=8,
-#                        hpcutoff=50.,
-#                        experiment_dir,
-#                        output_dir,
-#                        eyemovement_dir,
-#                        session_id=None,
-#                        task_id=None):
-#    """
-#    create a workflow for preprocessing and saving the studyforrest data
-#    """
-#    preproc = create_featreg_preproc(whichvol=None)
-#    preproc.inputs.inputspec.fwhm = fwhm
-#    preproc.inputs.inputspec.highpass = hpcutoff
-#
-#    if subject:
-#        subject_list=[subject[subject.index(subj)] for subj in subject]
-#    else:
-#        subject_list = sorted([path.split(os.path.sep)[-1] for path in
-#                            glob(os.path.join(experiment_dir, 'sub*'))])
-#
-#    if run:
-#        run_list=[run[run.index(r)] for r in run]
-#    else:
-#        run_list = []
-#        for i in range(1, run_num+1):
-#            run_list.append('run-' + str(i))
-#
-#    if session_id:
-#        session_list=[session_id]
-#    else:
-#        session_list = ['ses-movie']
-#
-#    if task_id:
-#        task_list=[task_id]
-#    else:
-#        task_list = ['task_avmovie']
-#
-#    info_source = pe.Node(
-#        util.IdentityInterface(fields=['subject_id',
-#                                    'session_id',
-#                                    'task_id',
-#                                    'run_id'],
-#                                        mandatory_inputs=False),
-#        name='infosource')
-#
-#    info_source.iterables = [('subject_id', subject_list),
-#                            ('session_id', session_list),
-#                            ('task_id', task_list),
-#                            ('run_id', run)]
-#
-#    templates = {'anat':'inputs/tnt/{subject_id}/t1w/brain.nii.gz',
-#                 'func':'inputs/aligned/{subject_id}/in_bold3Tp2/sub-*_task-avmovie_{run_id}_bold.nii.gz'}
-#
-#    sf = pe.Node(SelectFiles(templates),
-#              name='selectfiles')
-#    sf.inputs.base_directory=experiment_dir
-#
-#    datasink = pe.Node(DataSink(),
-#                  name='datasink')
-#    datasink.inputs.base_directory = output_dir
-#
-#
-#    def get_preproc_subs(subject_id, session_id, task_id, run_id):
-#        subs = [('_subject_id_{}_'.format(subject_id), '')]
-#        subs.append(('task_id_{}'.format(task_id), ''))
-#        subs.append(('_run_id_{}'.format(run_id), ''))
-#        subs.append(('_session_id_{}'.format(session_id), ''))
-#        subs.append(('_addmean0', ''))
-#        subs.append(('_dilatemask0', ''))
-#        subs.append(('_maskfunc30', ''))
-#        subs.append(('_meanfunc30', ''))
-#        subs.append(('bold_dtype_mcf_mask_smooth_mask_gms', 'mean'))
-#        subs.append(('bold_dtype_mcf_mask_smooth_mask', 'smooth'))
-#        subs.append(('bold_dtype_mcf_mask_smooth_mask_gms_tempfilt_maths',
-#        'highpass'))
-#        subs.append(('bold_dtype_bet_thresh_dil', 'mask'))
-#        return subs
-#
-#    subsgenpreproc = pe.Node(util.Function(input_names=['subject_id',
-#                                                        'session_id',
-#                                                        'task_id',
-#                                                        'run_id'],
-#                                        output_names=['substitutions'],
-#                                        function=get_preproc_subs),
-#                            name='subsgenpreproc')
-#
-#     getev3info = pe.Node(Function(input_names=['subject_id',
-#                                                'run_id',
-#                                                'confinfo',
-#                                                'experiment_dir',
-#                                                'outfilepath',
-#                                                'eyemovement_dir'],
-#                               output_names=['df_events'],
-#                               function=ev3_info),
-#                     name='getev3info')
-#
-#    getev3info.inputs.confinfo=confinfo
-#    getev3info.inputs.experiment_dir=experiment_dir
-#    getev3info.inputs.eyemovement_dir=eyemovement_dir
-#
-#    def outpath_gen(experiment_dir, subject_id):
-#        """
-#        Generate the outfile path for subject- and runspecific event files
-#        """
-#        from os.path import join as opj
-#        outfilepath=opj(experiment_dir, subject_id, 'func')
-#        return outfilepath
-#
-#    evoutpath = pe.Node(util.Function(input_names=['experiment_dir',
-#                                                    'subject_id'],
-#                                    output_names=['outfilepath'],
-#                                    function=outpath_gen),
-#                        name='evoutpath')
-#    evoutpath.inputs.experiment_dir=experiment_dir
-#
-#    preprocwf = pe.Workflow(name='preprocessing')
-#    preprocwf.connect([(info_source, evoutpath, [('subject_id', 'subject_id')]),
-#                        (info_source, sf, [('subject_id', 'subject_id'),
-#                                            ('run_id', 'run_id')]),
-#                        (info_source, getev3info, [('subject_id',
-#                                                'subject_id')]),
-#                        (info_source, datasink, [('subject_id', 'container')]),
-#                        (info_source, subsgenpreproc, [('subject_id',
-#                                                'subject_id'),
-#                                                ('session_id', 'session_id'),
-#                                                ('task_id', 'task_id'),
-#                                                ('run_id', 'run_id')]),
-#                        (evoutpath, getev3info, [('outfilepath',
-#                                                'outfilepath')]),
-#                        (sf, preproc, [('func', 'inputspec.func')]),
-#                        (subsgenpreproc, datasink, [('substitutions',
-#                                                'substitutions')]),
-#                        (preproc, datasink, [('outputspec.smoothed_files',
-#                                            'smooth')]),
-#                        (preproc, datasink, [('outputspec.mask', 'mask')]),
-#                        (preproc, datasink, [('outputspec.mean', 'mean')]),
-#                        (preproc, datasink, [('outputspec.highpassed_files',
-#                                            'highpass')])
-#                        ])
-#    return preprocwf
-#
 
-#def runfirst_forrest():
-#    """
-#    Create a workflow for a 1stlvl fmri analysis of the studyforrest dataset
-#    """
-##TODO how to connect preprocwf to this wf?
-#
-#    modelfit = create_modelfit_workflow()
-#    fixed_fx = create_fixed_effects_flow()
-#
-#    modelspec = pe.Node(model.SpecifyModel(),
-#                    name="modelspec")
-#    modelspec.inputs.input_units = 'secs'
-#    modelspec.inputs.time_repetition = TR
-#    modelspec.inputs.high_pass_filter_cutoff = hpcutoff
-#
-#    modelfit.inputs.inputspec.interscan_interval = TR
-#    modelfit.inputs.inputspec.model_serial_correlations = True
-#    modelfit.inputs.inputspec.bases = {'dgamma':{'derivs': True}}
-#
-#    modelfit.inputs.inputspec.contrasts = contrast_list
-#
-#    firstlevelwf = pe.Workflow(name='firstlevel')
-#    #wf_1.base_dir = 'firstlevel'
-#    firstlevelwf.connect([(,
-#                  (getev3info, modelspec, [('subject_info', 'subject_info')]),
-#                  (preproc, modelspec, [('outputspec.highpassed_files', 'functional_runs')]),
-#                  (modelspec, modelfit, [('session_info', 'inputspec.session_info')]),
-#                  (preproc, modelfit, [('outputspec.highpassed_files', 'inputspec.functional_data')]),
-#                  (preproc, fixed_fx, [(('outputspec.mask', pickfirst),
-#                                         'flameo.mask_file')]),
-#                  (modelfit, fixed_fx, [('outputspec.dof_file', 'inputspec.dof_files')]),
-#                   #### I believe I need to datasink the doffile###
-# #                  (modelfit, datasink, [('outputspec.dof_file', 'dof_file')]),
-#                   ####I believe I need sth like a join node to aggregate all runs of one subject here####
-#                  (modelfit, fixed_fx, [
-#                             (('outputspec.copes', sort_copes), 'inputspec.copes'),
-#                             (('outputspec.varcopes', sort_copes), 'inputspec.varcopes'),
-#                             (('outputspec.copes', num_copes), 'l2model.num_copes'),]),
-#                  (preproc, datasink, [('outputspec.smoothed_files', 'smooth')]),
-#                  (preproc, datasink, [('outputspec.mask', 'mask')]),
-#                  (preproc, datasink, [('outputspec.mean', 'mean')]),
-#                  (preproc, datasink, [('outputspec.highpassed_files', 'highpass')]),
-#                  (fixed_fx.get_node('outputspec'), datasink, [('res4d', 'res4d'),
-#                                                               ('copes', 'copes'),
-#                                                               ('varcopes', 'varcopes'),
-#                                                               ('zstats', 'zstats'),
-#                                                               ('tstats', 'tstats')]),
-#                  (modelfit.get_node('modelgen'), datasink, [('design_cov', 'design_cov'),
-#                                                             ('design_image', 'design_image'),
-#                                                             ('design_file', 'design_file')])
-#                  ])
-# 
-#
-#    ## TODO TODO TODO TODO
-#
-#def run_forrest_run(data_dir,#=data_dir,
-#                    work_dir,#=work_dir,
-#                    experiment_dir,#=experiment_dir,
-#                    run_num,#=8,
-#                    fwhm,#=5.0,
-#                    hpcutoff,#=50.,
-#                    TR,#=TR,
-#                    contrast_list,#=contrast_list,
-#                    ev3info,#,=ev3info,
-#                    confinfo):#=confinfo):
-#    """
-#    Create a workflow for a 1stlvl fmri analysis of the studyforrest dataset
-#    """
-#
-#    preproc = create_featreg_preproc(whichvol=None) #don't do motion correction
-#    modelfit = create_modelfit_workflow()
-#    fixed_fx = create_fixed_effects_flow()
-#
-#    subject_list = sorted([path.split(os.path.sep)[-1] for path in
-#                        glob(os.path.join(experiment_dir, 'sub*'))])
-#    run_list = []
-#    for i in range(1, run_num+1):
-#        run_list.append('run-' + str(i))
-##    subject_list=['sub-01']    for first attempts with single files
-##    run_list=['run-1']
-#    info_source = pe.Node(
-#        util.IdentityInterface(fields=['subject_id', 'run_id'],
-#                                        mandatory_inputs=False),
-#        name='infosource')
-#
-#    info_source.iterables=[('subject_id', subject_list),
-#                            ('run_id', run_list)]
-#
-#    templates = {'anat':'inputs/tnt/{subject_id}/t1w/brain.nii.gz',
-#                 'func':'inputs/aligned/{subject_id}/in_bold3Tp2/sub-*_task-avmovie_{run_id}_bold.nii.gz'}
-#
-#    sf = pe.Node(SelectFiles(templates),
-#              name='selectfiles')
-#    sf.inputs.base_directory=experiment_dir
-#
-#    datasink = pe.Node(DataSink(),
-#                  name='datasink')
-#    datasink.inputs.base_directory = output_dir
-#    substitutions = [('_run_id_', '',)]
-#    for subj in subject_list:
-#        substitutions+=[('_subject_id_{}'.format(subj),'')]
-#
-#    getev3info = pe.Node(Function(input_names=['subject_id', 'run_id',
-#                                                'ev3info', 'confinfo',
-#                                                'data_dir', 'experiment_dir'],
-#                               output_names=['subject_info'],
-#                               function=ev3_info),
-#                     name='getev3info')
-#    getev3info.inputs.ev3info=ev3info
-#    getev3info.inputs.confinfo=confinfo
-#    getev3info.inputs.data_dir=data_dir
-#    getev3info.inputs.experiment_dir=experiment_dir
-#    modelspec = pe.Node(model.SpecifyModel(),
-#                    name="modelspec")
-#    modelspec.inputs.input_units = 'secs'
-#    modelspec.inputs.time_repetition = TR
-#    modelspec.inputs.high_pass_filter_cutoff = hpcutoff
-#
-#    preproc.inputs.inputspec.fwhm = fwhm
-#    preproc.inputs.inputspec.highpass = hpcutoff
-#
-#    modelfit.inputs.inputspec.interscan_interval = TR
-#    modelfit.inputs.inputspec.model_serial_correlations = True
-#    modelfit.inputs.inputspec.bases = {'dgamma':{'derivs': True}}
-#
-#    modelfit.inputs.inputspec.contrasts = contrast_list
-#
-#    wf_1 = pe.Workflow(name='firstlevel')
-#    #wf_1.base_dir = 'firstlevel'
-#    wf_1.connect(info_source, 'subject_id', datasink, 'container')
-#    wf_1.connect([(info_source, getev3info, [('subject_id', 'subject_id')]),
-#                  (info_source, getev3info, [('run_id', 'run_id')]),
-#                  (info_source, sf, [('subject_id', 'subject_id'),
-#                                    ('run_id', 'run_id')]),
-#                  (sf, preproc, [('func', 'inputspec.func')]),
-#                  (getev3info, modelspec, [('subject_info', 'subject_info')]),
-#                  (preproc, modelspec, [('outputspec.highpassed_files', 'functional_runs')]),
-#                  (modelspec, modelfit, [('session_info', 'inputspec.session_info')]),
-#                  (preproc, modelfit, [('outputspec.highpassed_files', 'inputspec.functional_data')]),
-#                  (preproc, fixed_fx, [(('outputspec.mask', pickfirst),
-#                                         'flameo.mask_file')]),
-#                  (modelfit, fixed_fx, [('outputspec.dof_file', 'inputspec.dof_files')]),
-#                   #### I believe I need to datasink the doffile###
-# #                  (modelfit, datasink, [('outputspec.dof_file', 'dof_file')]),
-#                   ####I believe I need sth like a join node to aggregate all runs of one subject here####
-#                  (modelfit, fixed_fx, [
-#                             (('outputspec.copes', sort_copes), 'inputspec.copes'),
-#                             (('outputspec.varcopes', sort_copes), 'inputspec.varcopes'),
-#                             (('outputspec.copes', num_copes), 'l2model.num_copes'),]),
-#                  (preproc, datasink, [('outputspec.smoothed_files', 'smooth')]),
-#                  (preproc, datasink, [('outputspec.mask', 'mask')]),
-#                  (preproc, datasink, [('outputspec.mean', 'mean')]),
-#                  (preproc, datasink, [('outputspec.highpassed_files', 'highpass')]),
-#                  (fixed_fx.get_node('outputspec'), datasink, [('res4d', 'res4d'),
-#                                                               ('copes', 'copes'),
-#                                                               ('varcopes', 'varcopes'),
-#                                                               ('zstats', 'zstats'),
-#                                                               ('tstats', 'tstats')]),
-#                  (modelfit.get_node('modelgen'), datasink, [('design_cov', 'design_cov'),
-#                                                             ('design_image', 'design_image'),
-#                                                             ('design_file', 'design_file')])
-#                  ])
-#    return wf_1
-#
-#
+def runfirst_forrest(json_desc=None, hpcutoff=50.):
+    """
+    !!! While this is a in principle working workflow, it is made to work with a
+    Bunch structure specification of the events and confounds which is currently
+    missing from the preprocessing workflow! IF we decide to return from fitlins
+    back to nipype modelspec, we need to put the bunch back into the
+    preprocessing workflow.
+    !!!
+    Create a workflow for a 1stlvl fmri analysis of the studyforrest dataset
+    """
+#TODO how to connect preprocwf to this wf?
+
+    modelfit = create_modelfit_workflow()
+    fixed_fx = create_fixed_effects_flow()
+
+    if json_desc:
+        json_info = os.path.abspath(opj(experiment_dir, args.json_desc))
+    else:
+        import os
+        for root, dirs, files in os.walk(experiment_dir):
+            for name in files:
+                if name.endswith('bold.json'):
+                    json_info=os.path.abspath(name)
+
+    with open(json_info) as f:
+        task_info=json.load(f)
+        TR = task_info['RepetitionTime']
+
+    #Supply contrasts
+    condition_names = ['LEFT', 'RIGHT', 'UP', 'DOWN', 'CONF_LRDIFF', 'CONF_RMS', 'CONF_PD']
+
+    cont01 = ['LEFT > RIGHT', 'T', condition_names, [1, -1, 0, 0, 0, 0, 0]]
+    cont02 = ['UP > DOWN', 'T', condition_names, [0, 0, 1, -1, 0, 0, 0]]
+    cont03 = ['HOR > VERT', 'T', condition_names, [1, 1, -1, -1, 0, 0, 0]]
+
+    contrast_list = [cont01, cont02, cont03]
+
+    modelspec = pe.Node(model.SpecifyModel(),
+                    name="modelspec")
+    modelspec.inputs.input_units = 'secs'
+    modelspec.inputs.time_repetition = TR
+    modelspec.inputs.high_pass_filter_cutoff = hpcutoff
+
+    modelfit.inputs.inputspec.interscan_interval = TR
+    modelfit.inputs.inputspec.model_serial_correlations = True
+    modelfit.inputs.inputspec.bases = {'dgamma':{'derivs': True}}
+
+    modelfit.inputs.inputspec.contrasts = contrast_list
+
+    firstlevelwf = pe.Workflow(name='firstlevel')
+    #wf_1.base_dir = 'firstlevel'
+    firstlevelwf.connect([(getev3info, modelspec, [('subject_info', 'subject_info')]),
+                          (preproc, modelspec, [('outputspec.highpassed_files', 'functional_runs')]),
+                          (modelspec, modelfit, [('session_info', 'inputspec.session_info')]),
+                          (preprocwf, modelfit, [('outputspec.highpassed_files', 'inputspec.functional_data')]),
+                          (preprocwf, fixed_fx, [(('outputspec.mask', pickfirst),
+                                                 'flameo.mask_file')]),
+                          (modelfit, fixed_fx, [('outputspec.dof_file', 'inputspec.dof_files')]),
+                          (modelfit, fixed_fx, [
+                                 (('outputspec.copes', sort_copes), 'inputspec.copes'),
+                                 (('outputspec.varcopes', sort_copes), 'inputspec.varcopes'),
+                                 (('outputspec.copes', num_copes), 'l2model.num_copes'),]),
+                          (fixed_fx.get_node('outputspec'), datasink, [('res4d', 'res4d'),
+                                                               ('copes', 'copes'),
+                                                               ('varcopes', 'varcopes'),
+                                                               ('zstats', 'zstats'),
+                                                               ('tstats', 'tstats')]),
+                          (modelfit.get_node('modelgen'), datasink, [('design_cov', 'design_cov'),
+                                                             ('design_image', 'design_image'),
+                                                             ('design_file', 'design_file')])
+                          ])
+
+    return firstlevelwf
+
 
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(add_help=True,
                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-#    parser.add_argument('-o', '--output_dir', help='Output_dir: Where should Datasink store results? (i.e. "output")', metavar='PATH')
-#    parser.add_argument('-d', '--data_dir', help='Data_dir: Where does the script find data? (i.e. "inputs")', metavar='PATH', required=True)
+    parser.add_argument('-p', '--preproc', help='Mode: Preprocessing only, default: True. If set to False, preproc and first level model wfs are executed', default=True)
     parser.add_argument('-w', '--work_dir', help='Work_dir: Where shall intermediate results be saved? (i.e. "working_dir")', metavar='PATH')
     parser.add_argument('-e', '--experiment_dir', help='Experiment_dir: What is the base directory of the analysis? (i.e. ".")', metavar='PATH')
-#    parser.add_argument('-j', '--json_desc', help='Where does the script find a json file descriping acquisition parameter? (i.e. "inputs/studyforrest-phase2/task-movie_bold.json")', metavar='PATH', default="inputs/studyforrest-phase2/task-movie_bold.json")
+    parser.add_argument('-j', '--json_desc', help='Where does the script find a json file descriping acquisition parameter? (i.e. "inputs/studyforrest-phase2/task-movie_bold.json")', metavar='PATH')
     parser.add_argument('-f', '--fwhm', help='specify fwhm as a float', type=float, default=5.0)
     parser.add_argument('-hp', '--highpass', help='specify highpass cutoff', type=float, default=50.)
     parser.add_argument('-co', '--conf_path', help='Where does the script find conf files based on root of the directory? (e.g. "ses-movie/func")', metavar='PATH', default='ses-movie/func')
-#    parser.add_argument('-ev3', '--ev3_path', help='Where does the script find ev3 files based from root of the directory? (e.g. ".")', metavar='PATH', default='.')
     parser.add_argument('-r', '--run_num', help='how many runs?', type=int, default=8)
     parser.add_argument('-em', '--eyemovement_dir', help='Where are classified eyemovement deriv files? (i.e. "derivatives")', metavar='PATH', default='eyetrack')
     parser.add_argument('-ti', '--task_id', help='which task, i.e. "task-avmovie"', default='task-avmovie')
@@ -1460,11 +1071,6 @@ if __name__ == '__main__':
     parser.add_argument('-se', '--session_id', help='which session, ie. "ses-movie"')
     args = parser.parse_args()
 
-#    data_dir = os.path.abspath(args.data_dir)
-#    if args.output_dir:
-#        output_dir = os.path.abspath(args.output_dir)
-#    else:
-#        output_dir = opj(os.getcwd(), 'output')
 
     if args.experiment_dir:
         experiment_dir = os.path.abspath(args.experiment_dir)
@@ -1476,12 +1082,6 @@ if __name__ == '__main__':
     else:
         work_dir = opj(experiment_dir, 'work_dir')
 
-#    if args.json_desc:
-#        json_info = os.path.abspath(opj(experiment_dir, args.json_desc))
-#    else:
-        #default to hard code:
-#        json_info = os.path.abspath(opj(experiment_dir, 'inputs/studyforrest-phase2/task-movie_bold.json'))
-
     if args.eyemovement_dir:
         eyemovement_dir=args.eyemovement_dir
     else:
@@ -1492,11 +1092,14 @@ if __name__ == '__main__':
     else:
         confinfo='ses-movie/func'
 
+    if args.json_desc:
+        json_desc=args.json_desc
+    else:
+        json_desc=None
+
     fwhm=args.fwhm
     hpcutoff=args.highpass
     run_num = args.run_num
-#    confinfo=args.conf_path
-#    ev3info=args.ev3_path
 
     version = 0
     if fsl.Info.version() and \
@@ -1505,55 +1108,22 @@ if __name__ == '__main__':
 
     fsl.FSLCommand.set_default_output_type('NIFTI_GZ')
 
-pre = preprocess_forrest(experiment_dir = experiment_dir,
-                        eyemovement_dir = eyemovement_dir,
-                        confinfo=confinfo,
-                        subject_id= None,
-                        run_id= None,
-                        fwhm=fwhm,
-                        run_num=run_num,
-                        hpcutoff=hpcutoff,
-                        session_id=args.session_id,
-                        task_id=args.task_id)
+    pre = preprocess_forrest(experiment_dir = experiment_dir,
+                            eyemovement_dir = eyemovement_dir,
+                            confinfo=confinfo,
+                            subject_id= args.subject_id,
+                            run_id= args.run_id,
+                            fwhm=fwhm,
+                            run_num=run_num,
+                            hpcutoff=hpcutoff,
+                            session_id=args.session_id,
+                            task_id=args.task_id)
+    pre.base_dir=work_dir
+    pre.run(plugin='MultiProc', plugin_args={'n_procs':7})
 
-pre.base_dir=work_dir
-pre.run(plugin='MultiProc', plugin_args={'n_procs':7})
-#    with open(json_info) as f:
-#        task_info=json.load(f)
-#        TR = task_info['RepetitionTime']
-
-#    #Supply contrasts
-#    condition_names = ['LEFT', 'RIGHT', 'UP', 'DOWN', 'CONF_LRDIFF', 'CONF_RMS', 'CONF_PD']
-#
-#    cont01 = ['LEFT > RIGHT', 'T', condition_names, [1, -1, 0, 0, 0, 0, 0]]
-#    cont02 = ['UP > DOWN', 'T', condition_names, [0, 0, 1, -1, 0, 0, 0]]
-#    cont03 = ['HOR > VERT', 'T', condition_names, [1, 1, -1, -1, 0, 0, 0]]
-#
-#    contrast_list = [cont01, cont02, cont03]
-#
-
-#    print('exp= ', experiment_dir)
-#    print('out= ', output_dir)
-#    print('data= ', data_dir)
-#    print('work= ', work_dir)
-#    print('json= ', json_info)
-#    print('conf_path= ', confinfo)
-#    print('ev3= ', ev3info)
-#    print('highpass= ', hpcutoff)
-#    print('fwhm= ', fwhm)
-#    print('run= ', run_num)
+    if args.preproc==False:
+        firstlevel = runfirst_forrest(json_desc=json_desc,
+                                    hpcutoff=hpcutoff)
 
 
-#    wf_1 = run_forrest_run(data_dir,
-#                            work_dir,
-#                            experiment_dir,
-#                            run_num,
-#                            fwhm,
-#                            hpcutoff,
-#                            TR,
-#                            contrast_list,
-#                            ev3info,
-#                            confinfo)
-#    wf_1.base_dir = work_dir
-#    wf_1.run(plugin='MultiProc', plugin_args={'n_procs':7})
-#
+
