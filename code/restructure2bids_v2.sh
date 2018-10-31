@@ -29,17 +29,17 @@ subs=$(find inputs/aligned -type d -name "sub-*" -printf "%f\n" | sort)
 initial_dir=../BIDS_sacc
 session=ses-movie
 task=task-avmovie
-# create directories if the don't exists yet
-for sub in $subs; do
-    sub_dir=$sub
-    [ ! -d "${sub_dir}/${session}/func" ] && mkdir -p "${sub_dir}/${session}/func"
-    [ ! -d "${sub_dir}/${session}/anat" ] && mkdir -p "${sub_dir}/${session}/anat"
-    [ ! -d "${sub_dir}/${session}/xfm" ] && mkdir -p "${sub_dir}/${session}/xfm"
-    [ ! -d "${sub_dir}/${session}/eyetrack" ] && mkdir -p "${sub_dir}/${session}/eyetrack"
-done
-
-[ ! -d "models" ] && mkdir -p "models"
-
+## create directories if the don't exists yet
+#for sub in $subs; do
+#    sub_dir=$sub
+#    [ ! -d "${sub_dir}/${session}/func" ] && mkdir -p "${sub_dir}/${session}/func"
+#    [ ! -d "${sub_dir}/${session}/anat" ] && mkdir -p "${sub_dir}/${session}/anat"
+#    [ ! -d "${sub_dir}/${session}/xfm" ] && mkdir -p "${sub_dir}/${session}/xfm"
+#    [ ! -d "${sub_dir}/${session}/eyetrack" ] && mkdir -p "${sub_dir}/${session}/eyetrack"
+#done
+#
+#[ ! -d "models" ] && mkdir -p "models"
+#
 ## move aligned bold files, motion parameter files and annotation confound files
 ## into  into respective sub_dir/func dir
 #for sub in $subs; do
@@ -48,7 +48,7 @@ done
 #        mv $i $(echo $i | sed -e 's/task-avmovie/ses-movie_task-avmovie/');
 #    done
 #    for i in $(find ${sub}/${session}/func/*mcparams.txt); do
-#        mv $i $(echo $i | sed -e 's/mcparams.txt/desc-mcparams_motion.tsv/');
+#        mv $i $(echo $i | sed -e 's/bold_mcparams.txt/desc-mcparams_motion.tsv/');
 #    done
 #    cp inputs/aligned/${sub}/in_bold3Tp2/${sub}_task-avmovie_run-*_bold.nii.gz ${sub}/${session}/func
 #    for i in $(find ${sub}/${session}/func/*.nii.gz); do
@@ -80,11 +80,11 @@ done
 #        mv $i $(echo $i | sed -e 's/.txt/_desc-pd_regressors.tsv/');
 #    done
 #done
-
+#
 ## generate .json file to accompany mcparams file
 #for sub in $subs; do
 #    for run in $(seq 1 8); do
-#        cat <<EOT >  ${sub}/${session}/func/${sub}_${session}_${task}_run-${run}_bold_desc-mcparams_motion.json
+#        cat <<EOT >  ${sub}/${session}/func/${sub}_${session}_${task}_run-${run}_desc-mcparams_motion.json
 #{
 #    "X": "movement in X direction",
 #    "Y": "movement in Y direction",
@@ -97,15 +97,88 @@ done
 #    done
 #done
 #
-## copy all eyemovementlabel files into their respective sub_dir/eyetrack dir
+### copy all eyemovementlabel files into their respective sub_dir/eyetrack dir
+##for sub in $subs; do
+##    cp inputs/eyemovementlabels/${sub}/*.tsv ${sub}/${session}/eyetrack/;
+##done
+##for sub in $subs; do
+##    for i in $(find ${sub}/${session}/eyetrack/*.tsv); do
+##        mv $i $(echo $i | sed -e "s/task-movie/${session}_${task}/");
+##    done
+##done
+#for sub in $subs; do
+#    for i in $(find ${sub}/${session}/eyetrack/*.tsv); do
+#        mv $i $(echo $i | sed -e "s/events/desc-remodnav_events/")
+#    done
+#done
+#
+# create a .bidsignore file to hopefully get this directory bids compliant
+cat <<EOT > .bidsignore
+inputs/
+workdir/
+eyetrack/
+CHANGELOG.md
+README.md
+model-frst_smdl.json
+EOT
+
+
+
+# create some accompanying .json files
+
+# dataset_description.json file at root level:
+#cat <<EOT > dataset_description.json
+#{
+    "Name" : "BIDS_sacc"
+    "BIDSVersion" : "1.1.1"
+#    "PipelineDescription.Name": "alignment and nipype preproc",
+#    "PipelineDescription.Version": "studyforrest phase 2 aligned + nipype 1.1.3",
+#    "SourceDatasets": "url=medusa.ovgu.de:/home/data/psyinf/scratch/studyforrest-eyemovementlabels, url=medusa.ovgu.de:/home/data/psyinf/forrest_gump/collection/aligned"
+#}
+#EOT
+
+# .json files for nipype preprocessing derivatives
 for sub in $subs; do
-    cp inputs/eyemovementlabels/${sub}/*.tsv ${sub}/${session}/eyetrack/
-    for i in $(find ${sub}/${session}/eyetrack/*.tsv); do
-        mv $i $(echo $i | sed -e "s/task-movie/${session}_${task}/");
-    done
-    for i in $(find ${sub}/${session}/eyetrack/*tsv); do
-        mv $i $(echo $i | sed -e 's/events.tsv/desc-remodnav_events.tsv/')
+    for run in $(seq 1 8); do
+        cat <<EOT >${sub}/${session}/func/${sub}_${session}_${task}_run-${run}_desc-highpass.json
+{
+"Hiphpass-filter" : "50.0"
+}
+
+EOT
     done
 done
 
+for sub in $subs; do
+    for run in $(seq 1 8); do
+        cat <<EOT >${sub}/${session}/func/${sub}_${session}_${task}_run-${run}_type-brain_mask.json
+{
+"Type" : "brain"
+}
+
+EOT
+    done
+done
+
+for sub in $subs; do
+    for run in $(seq 1 8); do
+        cat <<EOT >${sub}/${session}/func/${sub}_${session}_${task}_run-${run}_desc-smooth.json
+{
+"fwhm" : "5.0mm"
+}
+
+EOT
+    done
+done
+
+for sub in $subs; do
+    for run in $(seq 1 8); do
+        cat <<EOT >${sub}/${session}/func/${sub}_${session}_${task}_run-${run}_desc-mean.json
+{
+"mean functional image" : ""
+}
+
+EOT
+    done
+done
 
