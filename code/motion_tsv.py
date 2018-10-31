@@ -2,6 +2,10 @@
 
 """
 short script to include headers in the motion parameter files
+Ran this script in the root of the directory with
+code/motion_tsv.py
+Important: Don't datalad add any file to the dataset before running the command,
+as Datalad/git annex then tries to protect the files from being overwritten!
 """
 import pandas as pd
 import numpy as np
