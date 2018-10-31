@@ -1,3 +1,5 @@
 workdir/
 workdir2/
 crash*
+*.png
+*.dot
