@@ -3,3 +3,4 @@ workdir2/
 crash*
 *.png
 *.dot
+**/.ipynb_checkpoints
