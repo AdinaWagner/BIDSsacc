@@ -14,6 +14,7 @@ mkdir inputs
 #install some not-BIDS conform datasets
 datalad install -d . -s adina@medusa.ovgu.de:/home/data/psyinf/forrest_gump/collection/aligned/ inputs/aligned
 datalad install -d . -s adina@medusa.ovgu.de:/home/data/psyinf/scratch/studyforrest-data-eyemovementlabels inputs/eyemovementlabels
+datalad install -d . -s git@github.com:psychoinformatics-de/studyforrest-data-templatetransforms.git inputs/tnt
 datalad get inputs/aligned/sub*/in_bold3Tp2/sub-*task-avmovie_run-*_bold*
 datalad get inputs/eyemovementlabels/sub*/sub*task-movie_run-*_events.tsv
 
