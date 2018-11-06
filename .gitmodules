@@ -1,6 +1,9 @@
-[submodule "install"]
-	path = install
+[submodule "sourcedata/eyemovementlabels"]
+	path = sourcedata/eyemovementlabels
 	url = adina@medusa.ovgu.de:/home/data/psyinf/scratch/studyforrest-data-eyemovementlabels
-[submodule "aligned"]
-	path = aligned
+[submodule "sourcedata/aligned"]
+	path = sourcedata/aligned
 	url = adina@medusa.ovgu.de:/home/data/psyinf/forrest_gump/collection/aligned/
+[submodule "inputs"]
+	path = inputs
+	url = git@github.com:psychoinformatics-de/studyforrest-data-templatetransforms.git
