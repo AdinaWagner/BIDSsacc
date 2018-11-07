@@ -65,6 +65,15 @@ for sub in $subs; do
     for i in $(find ${sub}/${session}/func/*.txt); do
         mv $i $(echo $i | sed -e 's/.txt/_desc-pd_regressors.tsv/');
     done
+    cp inputs/tnt/${sub}/bold3Tp2/in_grpbold3Tp2/subj2tmpl_warp.nii.gz  ${sub}/${session}/xfm/
+    for i in $(find ${sub}/${session}/xfm/subj2tmpl_warp.nii.gz); do
+        mv $i $(echo $i | sed -e "s/subj2tmpl_warp/${sub}_from-BOLD_to-group_mode-image/");
+    done
+    cp inputs/tnt/${sub}/bold3Tp2/in_grpbold3Tp2/head.nii.gz  ${sub}/${session}/xfm/
+    for i in $(find ${sub}/${session}/xfm/head.nii.gz); do
+        mv $i $(echo $i | sed -e "s/head/NonstandardReference_space-group/");
+    done
+    for i in $(find ${sub}
 done
 
 # generate .json file to accompany mcparams file
