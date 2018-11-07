@@ -73,6 +73,7 @@ for sub in $subs; do
     for i in $(find ${sub}/${session}/xfm/head.nii.gz); do
         mv $i $(echo $i | sed -e "s/head/NonstandardReference_space-group/");
     done
+    cp inputs/tnt/${sub}/bold3Tp2/brain_mask.nii.gz ${sub}/${session}/anat/
     for i in $(find ${sub}
 done
 
