@@ -11,7 +11,7 @@ Nypipe reanalysis - version 2
 This script is contains a preprocessing workflow aimed at replicating a previous
 FSL-based model incorporating saccadic eyemovements to localize functional
 regions of the brain involved in eyemovement generation and execution. It
-further generates BIDS compliant events files for saccadic and confounding
+further generates BIDS BEP002 compliant events files for saccadic and confounding
 events.
 
 """
@@ -902,10 +902,9 @@ def preprocess_forrest(experiment_dir,
         subs.append(('bold_dtype_bet_thresh_dil', 'type-brain_mask'))
         subs.append(('bold_dtype_mask_smooth_mask_gms', 'desc-mean'))
         subs.append(('bold_dtype_mask_smooth_mask', 'desc-smooth'))
-        subs.append(('bold_dtype_mask_smooth_mask gms_tempfilt_maths',
-        'desc-highpass'))
+        subs.append(('bold_dtype_mask_smooth_mask gms_tempfilt_maths', 'desc-highpass_bold'))
         subs.append(('_mean', ''))
-        subs.append(('mean_tempfilt_maths','highpass'))
+        subs.append(('mean_tempfilt_maths','highpass_bold'))
         return subs
 
     subsgenpreproc = pe.Node(util.Function(input_names=['subject_id',
@@ -987,7 +986,6 @@ def runfirst_forrest(json_desc=None, hpcutoff=50.):
     !!!
     Create a workflow for a 1stlvl fmri analysis of the studyforrest dataset
     """
-#TODO how to connect preprocwf to this wf?
 
     modelfit = create_modelfit_workflow()
     fixed_fx = create_fixed_effects_flow()
