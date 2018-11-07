@@ -1,7 +1,8 @@
 {
     "name": "my_first_model",
     "input": {
-        "task": "avmovie"
+        "task": "avmovie",
+        "desc": "highpass"
     },
     "description": "My first BIDS-like GLM: Reanalysis",
     "blocks": [
@@ -79,18 +80,6 @@
             ]
         },
         {
-            "level": "subject",
-            "model": {
-                "model_type": "glm",
-                "variances": [
-                    {
-                        "name": "within_run_var",
-                        "groupBy": "run"
-                    }
-                ]
-            }
-        },
-        {
             "level": "dataset",
             "model": {
                 "model_type": "glm",
@@ -105,6 +94,14 @@
                     "t-test_up-down",
                     "t-test_hor-ver"
                 ]
+            },
+            "contrasts": {
+                "name" : "group_t-test_left-right",
+                "condition_list": [
+                    "t-test_left-right"
+                ],
+                "weights": [1],
+                "type": "T"
             }
         }
     ]
