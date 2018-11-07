@@ -17,6 +17,9 @@ datalad install -d . -s adina@medusa.ovgu.de:/home/data/psyinf/scratch/studyforr
 datalad install -d . -s git@github.com:psychoinformatics-de/studyforrest-data-templatetransforms.git inputs/tnt
 datalad get inputs/aligned/sub*/in_bold3Tp2/sub-*task-avmovie_run-*_bold*
 datalad get inputs/eyemovementlabels/sub*/sub*task-movie_run-*_events.tsv
+datalad get inputs/tnt/sub*/bold3Tp2/brain*
+datalad get inputs/tnt/sub*/bold3Tp2/head*
+datalad get inputs/tnt/sub*/bold3Tp2/in_grpbold3Tp2/*
 
 #copy some custom annotation confounds
 scp -r adina@medusa.ovgu.de:~/pd/adina/direction_saccades_glm/inputs/annotation_confounds inputs/annotation_confounds
