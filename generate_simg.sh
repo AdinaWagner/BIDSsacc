@@ -9,5 +9,5 @@ sudo docker run --rm kaczmarj/neurodocker:master generate singularity \
 --pkg-manager apt \
 --install fsl-5.0-core fsl-mni152-templates python-mvpa2 python-nipype python-matplotlib python-sklearn ipython \
 --add-to-entrypoint "source /etc/fsl/5.0/fsl.sh" \
---run-bash "mkdir -p /data /backup" \
+--run-bash "mkdir -p /backup/data/movieloc/saccs /data/movieloc/backup_store/saccs" \
 > envs/Singularity.1.1
