@@ -1,0 +1,3 @@
+[submodule "inputs/aligned"]
+	path = inputs/aligned
+	url = adina@medusa.ovgu.de:/home/data/psyinf/forrest_gump/collection/aligned/
