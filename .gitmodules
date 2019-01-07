@@ -4,3 +4,6 @@
 [submodule "inputs/tnt"]
 	path = inputs/tnt
 	url = git@github.com:psychoinformatics-de/studyforrest-data-templatetransforms.git
+[submodule "inputs/visualrois"]
+	path = inputs/visualrois
+	url = git@github.com:psychoinformatics-de/studyforrest-data-visualrois.git
