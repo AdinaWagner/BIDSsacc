@@ -1,0 +1,52 @@
+{
+    "name": "FEF_localizer",
+    "Input": {
+        "Include": {
+            "session": "ses-movie"
+            },
+        "Exclude": {
+            "subject": "05"
+            }
+        },
+    "Steps": [
+        {
+            "Level": "run",
+            "Model": {
+                "X": [
+                    "DOWN",
+                    "UP",
+                    "LEFT",
+                    "RIGHT",
+                    "PD",
+                    "LRDIFF",
+                    "RMS"
+                    ]
+            },
+            "Contrasts": [
+            {
+                "Name": "Horizontal_vs_Vertical",
+                "ConditionList": [
+                        "LEFT",
+                        "RIGHT",
+                        "UP",
+                        "DOWN"
+                        ],
+                "Weights": [1, 1, -1, -1],
+                "Type": "T"
+                    }
+                    ]
+        },
+        {
+            "Level": "subject",
+            "AutoContrasts": [
+                "Horizontal_vs_Vertical"
+            ]
+        },
+        {
+            "Level": "dataset",
+            "AutoContrasts": [
+                "Horizontal_vs_Vertical"
+                ]
+        }
+    ]
+}
