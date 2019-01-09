@@ -755,7 +755,7 @@ def ev3_info(subject_id,
     data = df[(df['label']=='SACC') | (df['label']=='ISAC')]
     #calculate angles and lengths, extract times and durations
     time, duration, angles, lengths = polar_coordinates(data, conversion_factor)
-    trial_dummy = np.repeat('nothing', len(time))
+    trial_dummy = np.repeat('dummy_string_value', len(time))
     trans_data = np.column_stack((time, duration, angles, lengths))
     up_idx = np.where(np.logical_and(trans_data[:,2] >= 1.308996939,
     trans_data[:,2]<= 1.8325957146))[0]
@@ -765,6 +765,23 @@ def ev3_info(subject_id,
     trans_data[:,2]<= -2.8797932658))[0]
     right_idx = np.where(np.logical_and(trans_data[:,2] <= 0.2617993878,
     trans_data[:,2]>= -0.2617993878))[0]
+    # additional direction for possible later use:
+    up_right_idx = np.where(np.logical_and(trans_data[:, 2] < 1.308996939,
+                                           trans_data[:, 2] >= 0.7853981634))[0]
+    right_up_idx = np.where(np.logical_and(trans_data[:, 2] < 0.7853981634,
+                                           trans_data[:, 2] > 0.2617993878))[0]
+    right_down_idx = np.where(np.logical_and(trans_data[:, 2] < -0.2617993878,
+                                             trans_data[:, 2] >= -0.7853981634))[0]
+    down_right_idx = np.where(np.logical_and(trans_data[:, 2] < -0.7853981634,
+                                             trans_data[:, 2] > -1.308996939))[0]
+    down_left_idx = np.where(np.logical_and(trans_data[:, 2] < -1.8325957146,
+                                            trans_data[:, 2] > -2.3561944902))[0]
+    left_down_idx = np.where(np.logical_and(trans_data[:, 2] <= -2.3561944902,
+                                            trans_data[:, 2] > -2.8797932658))[0]
+    left_up_idx = np.where(np.logical_and(trans_data[:, 2] < 2.8797932658,
+                                          trans_data[:, 2] > 2.3561944902))[0]
+    up_left_idx = np.where(np.logical_and(trans_data[:, 2] <= 2.3561944902,
+                                          trans_data[:, 2] > 1.8325957146))[0]
     for i in up_idx:
         trial_dummy[i]="UP"
     for i in down_idx:
@@ -773,6 +790,22 @@ def ev3_info(subject_id,
         trial_dummy[i]="LEFT"
     for i in right_idx:
         trial_dummy[i]="RIGHT"
+    for i in up_right_idx:
+        trial_dummy[i] = "UP_RIGHT"
+    for i in right_up_idx:
+        trial_dummy[i] = "RIGHT_UP"
+    for i in right_down_idx:
+        trial_dummy[i] = "RIGHT_DOWN"
+    for i in down_right_idx:
+        trial_dummy[i] = "DOWN_RIGHT"
+    for i in down_left_idx:
+        trial_dummy[i] = "DOWN_LEFT"
+    for i in left_down_idx:
+        trial_dummy[i] = "LEFT_DOWN"
+    for i in left_up_idx:
+        trial_dummy[i] = "LEFT_UP"
+    for i in up_left_idx:
+        trial_dummy[i] = "UP_LEFT"
     #combine into dataframe
     rec = np.core.records.fromarrays(trans_data.transpose(), names='onset, duration, angle, amplitude', formats='f8, f8, f8, f8')
     df_saccs = pd.DataFrame.from_records(rec)
@@ -801,6 +834,11 @@ def ev3_info(subject_id,
     #reindexing
     newindex=['onset', 'duration', 'trial_type', 'amplitude']
     df_events = df_event.reindex(newindex, axis='columns')
+
+    # assert that we did not miss any saccade direction
+    assert 'dummy_string_value' not in np.unique(df_events['trial_type'].values)
+    # assert that we found all 15 different types of trial_types
+    assert len(np.unique(df_events['trial_type'].values)) == 15
 
     outfilepath=opj(experiment_dir, subject_id, confinfo)
     df_events.to_csv(opj(outfilepath,'{}_{}_{}_{}_events.tsv'.format(subject_id,
