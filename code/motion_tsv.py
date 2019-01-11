@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 """
 short script to include headers in the motion parameter files
@@ -10,10 +10,8 @@ as Datalad/git annex then tries to protect the files from being overwritten!
 import pandas as pd
 import numpy as np
 from glob import glob
-import os.path
 
-motion_path =
-'sub*/ses-movie/func/sub*_ses-movie_task-avmovie_run*_bold_desc-mcparams_motion.txt'
+motion_path = 'sub*/ses-movie/func/sub*_ses-movie_task-avmovie_run*_bold_desc-mcparams_motion.txt'
 motion_files = glob(motion_path)
 head_mc = 'X\tY\tZ\tRotX\tRotY\tRotZ'
 for mc in sorted(motion_files):
