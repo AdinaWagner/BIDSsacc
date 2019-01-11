@@ -12,7 +12,8 @@ import numpy as np
 from glob import glob
 import os.path
 
-motion_path = 'sub*/ses-movie/func/sub*_ses-movie_task-avmovie_run*_bold_desc-mcparams_motion.tsv'
+motion_path =
+'sub*/ses-movie/func/sub*_ses-movie_task-avmovie_run*_bold_desc-mcparams_motion.txt'
 motion_files = glob(motion_path)
 head_mc = 'X\tY\tZ\tRotX\tRotY\tRotZ'
 for mc in sorted(motion_files):
