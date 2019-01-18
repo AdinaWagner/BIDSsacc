@@ -1,12 +1,7 @@
 {
     "name": "FEF_localizer",
     "Input": {
-        "Include": {
-            "session": "ses-movie"
-            },
-        "Exclude": {
-            "subject": "05"
-            }
+        "session": "movie"
         },
     "Steps": [
         {
