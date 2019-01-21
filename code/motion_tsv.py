@@ -11,9 +11,35 @@ import pandas as pd
 import numpy as np
 from glob import glob
 
-motion_path = 'sub*/ses-movie/func/sub*_ses-movie_task-avmovie_run*_bold_desc-mcparams_motion.txt'
-motion_files = glob(motion_path)
-head_mc = 'X\tY\tZ\tRotX\tRotY\tRotZ'
-for mc in sorted(motion_files):
-    data=pd.read_csv(mc, sep='  ', header=None)
-    np.savetxt(mc, data, delimiter='\t', header=head_mc, comments='')
+def main(file,
+         header,
+         sep
+         ):
+    files = glob(file)
+    for f in sorted(files):
+        data=pd.read_csv(f, sep=sep, header=None)
+        np.savetxt(f, data, delimiter='\t', header=header, comments='')
+
+
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--inputs', help="Path to files that a header should be added to."
+                                               "Please specify a path with appropriate wildcards for"
+                                               "globbing.")
+    parser.add_argument('--header', nargs='+', help="The new header to be added. Make sure it corresponds"
+                                                    "to the number of columns in the input files. Specify"
+                                                    "as consecutive strings.")
+    parser.add_argument('-s', '--sep', help="What is the separator of the input files? Default: '\t'",
+                        default='\t')
+    args = parser.parse_args()
+
+    header = '\t'.join(args.header)
+    print("I will try to use this header: {}.".format(header))
+
+    file = args.inputs
+    print("I will glob for this file: {}.".format(file))
+
+    sep = args.sep
+
+    main(file, header, sep)
