@@ -1,7 +1,9 @@
 {
     "Name": "BIDS_sacc",
     "BIDSVersion": "1.1.1",
-    "PipelineDescription.Name": "alignment and nipype preproc",
-    "PipelineDescription.Version": "studyforrest phase 2 aligned + nipype 1.1.3",
-    "SourceDatasets": "url=medusa.ovgu.de:/home/data/psyinf/scratch/studyforrest-eyemovementlabels, url=medusa.ovgu.de:/home/data/psyinf/forrest_gump/collection/aligned"
+    "PipelineDescription": {
+       "Name": "alignment and nipype preproc",
+       "Version": "studyforrest phase 2 aligned + nipype 1.1.3"
+    },
+    "SourceDatasets": "url=ssh://medusa.ovgu.de/home/data/psyinf/scratch/studyforrest-eyemovementlabels, url=medusa.ovgu.de:/home/data/psyinf/forrest_gump/collection/aligned"
 }
