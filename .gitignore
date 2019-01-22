@@ -6,3 +6,4 @@ crash*
 *.png
 *.dot
 **/.ipynb_checkpoints
+.idea/
