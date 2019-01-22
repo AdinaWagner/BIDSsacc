@@ -35,11 +35,12 @@ def main(participants,
     for participant in participants:
         # glob bold files and brain masks
         input_fns = glob(basedir + participant + inputfile)
-        input_fns.append = glob(basedir + participant + mask)
+        input_fns.append(glob(basedir + participant + mask))
 
         # get the template and reference
         reference_fn = basedir + reference.format(participant)
         template_fn = basedir + template.format(participant)
+        #print(input_fns, reference_fn, template_fn)
 
         for inp in input_fns:
             # build an output name
@@ -54,23 +55,23 @@ def main(participants,
                                     session,
                                     task,
                                     run,
-                                    'space-MNI152',
+                                    'space-MNI152NLin6Sym',
                                     '_'.join(inp.split('/')[-1].split('_')[4:])])
             elif 'mask.nii.gz' in inp.split('/')[-1].split('_'):
                 outname = '_'.join([participant,
                                     session,
                                     task,
                                     run,
-                                    'space-MNI152',
+                                    'space-MNI152NLin6Sym',
                                     '_'.join(mask.split('/')[-1].split('_')[4:])])
-            output_dir = basedir + participant + '/' + \
-                         '/'.join(inp.split('/')[:-1]) + '/' + outname
+            output_dir = basedir + participant + '/' + '/'.join(inp.split('/')[2:-1]) + '/' + outname
+            # print(outname, output_dir)
             fsl_cmd = ("fsl5.0-applywarp -i {0}  -o {1} -r {2} -w {3} --interp={4}".format(
                 inp, output_dir, reference_fn, template_fn, interpolation))
 
             call(fsl_cmd, shell=True)
 
-            print("Warped input files{}; output file is {1}".format(inp, output_dir))
+            print("Warped input files{0}; output file is {1}".format(inp, output_dir))
 
 
 if __name__ == '__main__':
