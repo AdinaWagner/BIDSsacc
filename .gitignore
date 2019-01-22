@@ -1,5 +1,5 @@
 workdir/
-tmp/
+tmp*/
 preprocessing/
 workdir2/
 crash*
