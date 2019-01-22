@@ -7,3 +7,6 @@
 [submodule "inputs"]
 	path = inputs
 	url = git@github.com:psychoinformatics-de/studyforrest-data-templatetransforms.git
+[submodule "sourcedata/tnt"]
+	path = sourcedata/tnt
+	url = https://github.com/psychoinformatics-de/studyforrest-data-templatetransforms.git
