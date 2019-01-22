@@ -8,23 +8,23 @@
             "Level": "run",
             "Model": {
                 "X": [
-                    "DOWN",
-                    "UP",
-                    "LEFT",
-                    "RIGHT",
-                    "PD",
-                    "LRDIFF",
-                    "RMS"
+                    "trial_type.DOWN",
+                    "trial_type.UP",
+                    "trial_type.LEFT",
+                    "trial_type.RIGHT",
+                    "trial_type.PD",
+                    "trial_type.LRDIFF",
+                    "trial_type.RMS"
                     ]
             },
             "Contrasts": [
             {
                 "Name": "Horizontal_vs_Vertical",
                 "ConditionList": [
-                        "LEFT",
-                        "RIGHT",
-                        "UP",
-                        "DOWN"
+                        "trial_type.trial_type.LEFT",
+                        "trial_type.RIGHT",
+                        "trial_type.UP",
+                        "trial_type.DOWN"
                         ],
                 "Weights": [1, 1, -1, -1],
                 "Type": "T"
