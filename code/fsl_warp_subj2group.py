@@ -35,13 +35,13 @@ def main(participants,
     for participant in participants:
         # glob bold files and brain masks
         input_fns = glob(basedir + participant + inputfile)
-        input_fns.append(glob(basedir + participant + mask))
+        input_fns.extend(glob(basedir + participant + mask))
 
         # get the template and reference
         reference_fn = basedir + reference.format(participant)
         template_fn = basedir + template.format(participant)
         #print(input_fns, reference_fn, template_fn)
-
+        #print(input_fns)
         for inp in input_fns:
             # build an output name
             # lets hope it follows bids convention
