@@ -11,10 +11,7 @@
                     "trial_type.DOWN",
                     "trial_type.UP",
                     "trial_type.LEFT",
-                    "trial_type.RIGHT",
-                    "trial_type.PD",
-                    "trial_type.LRDIFF",
-                    "trial_type.RMS"
+                    "trial_type.RIGHT"
                     ]
             },
             "Contrasts": [],
