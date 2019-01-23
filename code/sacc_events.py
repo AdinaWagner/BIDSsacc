@@ -87,7 +87,7 @@ def ev3_info(subject_id,
     trial_dummy = np.repeat('dummy_string_value', len(time))
     trans_data = np.column_stack((time, duration, angles, lengths))
     # group the saccades into directions. Relevant for the glm are only
-    # 30° around the horizontal and vertical axis, but the rest is included
+    # 30 around the horizontal and vertical axis, but the rest is included
     # in the GLM as well for more power. If necessary later, I include the
     # necessary bounderies for more directions as well.
     # I computed the radians with this degree to radian converter for simplicity:
