@@ -21,12 +21,8 @@
                 "Name": "Split",
                 "Input": ["amplitude_"],
                 "By": ["trial_type"]
-                },
-                {
-                "Name": "Convolve",
-                "Input": ["amplitude_.UP", "amplitude_.DOWN", "amplitude_.LEFT", "amplitude_.RIGHT"],
-                "Model": "spm"
-                  }]
+                }
+                  ]
             }]
         }
 
