@@ -9,18 +9,24 @@
             "Level": "run",
             "Model": {
                 "X": [
-                    "trial_type.DOWN",
-                    "trial_type.UP",
-                    "trial_type.LEFT",
-                    "trial_type.RIGHT"
+                    "amplitude_.DOWN",
+                    "amplitude_.UP",
+                    "amplitude_.LEFT",
+                    "amplitude_.RIGHT"
                     ]
             },
             "Contrasts": [],
             "AutoContrasts": true,
             "Transformations": [{
-                "Name": "Factor",
-                "Input": ["trial_type"]
-                }]
+                "Name": "Split",
+                "Input": ["amplitude_"],
+                "By": ["trial_type"]
+                },
+                {
+                "Name": "Convolve",
+                "Input": ["amplitude_.UP", "amplitude_.DOWN", "amplitude_.LEFT", "amplitude_.RIGHT"],
+                "Model": "spm"
+                  }]
             }]
         }
 
