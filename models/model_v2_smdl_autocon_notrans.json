@@ -1,0 +1,30 @@
+{
+    "name": "FEF_localizer",
+    "Input": {
+        "session": "movie"
+        },
+    "Steps": [
+        {
+            "Level": "run",
+            "Model": {
+                "X": [
+                    "trial_type.DOWN",
+                    "trial_type.UP",
+                    "trial_type.LEFT",
+                    "trial_type.RIGHT"
+                    ]
+            },
+            "Contrasts": [],
+            "AutoContrasts": true
+            }]
+        },
+        {
+            "Level": "subject",
+            "AutoContrasts": true
+        },
+        {
+            "Level": "dataset",
+            "AutoContrasts": true
+        }
+    ]
+}
