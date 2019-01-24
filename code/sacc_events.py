@@ -173,7 +173,7 @@ def ev3_info(subject_id,
     df_event = pd.concat(dfs)
     # reindexing, because pandas orders columns alphabetically
     newindex = ['onset', 'duration', 'trial_type', 'amplitude']
-    df_events = df_event.reindex(newindex, axis='columns').sort_values('onset')
+    df_events = df_event.reindex(newindex, axis='columns')
     # assert that we did not miss any saccade direction
     assert 'dummy_string_value' not in np.unique(df_events['trial_type'].values)
     # assert that we found all 15 different types of trial_types
