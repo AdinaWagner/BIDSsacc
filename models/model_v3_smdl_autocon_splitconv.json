@@ -1,8 +1,7 @@
 {
     "name": "FEF_localizer",
     "Input": {
-        "session": "movie",
-        "subject": "01"
+        "session": "movie"
         },
     "Steps": [
         {
