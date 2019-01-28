@@ -4,9 +4,6 @@
 [submodule "sourcedata/aligned"]
 	path = sourcedata/aligned
 	url = adina@medusa.ovgu.de:/home/data/psyinf/forrest_gump/collection/aligned/
-[submodule "inputs"]
-	path = inputs
-	url = git@github.com:psychoinformatics-de/studyforrest-data-templatetransforms.git
 [submodule "sourcedata/tnt"]
 	path = sourcedata/tnt
 	url = https://github.com/psychoinformatics-de/studyforrest-data-templatetransforms.git
