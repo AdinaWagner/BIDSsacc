@@ -8,9 +8,6 @@
             "Level": "run",
             "Model": {
                 "X": [
-                    "amplitude_.DOWN",
-                    "amplitude_.UP",
-                    "amplitude_.LEFT",
                     "amplitude_.RIGHT"
                     ]
             },
@@ -23,7 +20,7 @@
                 },
                 {
                 "Name": "Convolve",
-                "Input": ["amplitude_.UP", "amplitude_.DOWN", "amplitude_.LEFT", "amplitude_.RIGHT"],
+                "Input": ["amplitude_.RIGHT"],
                 "Model": "spm"
                   }]
             },
