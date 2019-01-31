@@ -41,7 +41,7 @@
                 },
                 {
                 "Name": "Or",
-                "Input": ["amplitude_.UP", "amplitude_DOWN"],
+                "Input": ["amplitude_.UP", "amplitude_.DOWN"],
                 "Output": ["vertical"]
                 },
                 {
