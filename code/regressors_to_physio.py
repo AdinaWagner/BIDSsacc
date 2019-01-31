@@ -69,9 +69,7 @@ if __name__ == '__main__':
                                                          "task-avmovie_run-{}_desc-pd_regressors.tsv\""
                                                          "\"sub-{}/ses-movie/func/sub-{}_ses-movie_task-avmovie_run-{}"
                                                          "_desc-rms_regressors.tsv\"")
-    parser.add_argument('-r', '--run', nargs='+',
-                        help="Which runs? Specify as consecutive integers eg. 1 2 4. Defaults to 8",
-                        default=[1, 2, 3, 4, 5, 6, 7, 8])
+    parser.add_argument('-r', '--run', nargs='+', help="Which runs? Specify as consecutive integers eg. 1 2 4. Defaults to 8", default=[1, 2, 3, 4, 5, 6, 7, 8])
     parser.add_argument('-s', '--sep', help="whats the seperator in the regressor files? Default: \t", default='\t')
     parser.add_argument('--header', help="Is there the 'onset', 'duration', 'amplitude' header present?. Default True",
                         default=True)
