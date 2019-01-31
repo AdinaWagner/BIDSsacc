@@ -1,0 +1,64 @@
+{
+    "name": "FEF_localizer",
+    "Input": {
+        "session": "movie"
+        },
+    "Steps": [
+        {
+            "Level": "run",
+            "Model": {
+                "X": [
+                    "horizontal",
+                    "vertical",
+                    "X",
+                    "Y",
+                    "Z",
+                    "RotX",
+                    "RotY",
+                    "RotZ",
+                    "lrdiff",
+                    "pd",
+                    "rms"
+                    ]
+            },
+            "Contrasts": [
+                {
+                "Name": "horizontal_vertical",
+                "ConditionList": ["horizontal", "vertical"],
+                "Weights": [1, -1],
+                "Type": "t"
+                }
+            ],
+            "Transformations": [{
+                "Name": "Split",
+                "Input": ["amplitude_"],
+                "By": ["trial_type"]
+                },
+               {
+                "Name": "Or",
+                "Input": ["amplitude_.RIGHT", "amplitude_.LEFT"],
+                "Output": ["horizontal"]
+                },
+                {
+                "Name": "Or",
+                "Input": ["amplitude_.UP", "amplitude_DOWN"],
+                "Output": ["vertical"]
+                },
+                {
+                "Name": "Convolve",
+                "Input": ["horizontal", "vertical"],
+                "Model": "spm"
+                }
+                ]
+            },
+        {
+            "Level": "subject",
+            "AutoContrasts": true
+        },
+        {
+            "Level": "dataset",
+            "AutoContrasts": true
+        }]
+}
+
+
