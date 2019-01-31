@@ -26,15 +26,18 @@ def main(files,
             sampling_rate = []
             onset = []
             for file in sorted(files):
+                f = glob(file.format(sub, run))
+                assert len(f) == 1
+                f = f[0]
                 if header:
-                    data = pd.read_csv(file.format(sub, run), sep=sep)
+                    data = pd.read_csv(f, sep=sep)
                     amplitudes.append(data['amplitude'])
                     # get the frequency from duration data, and onset from onset
                     # we assume duration is in seconds
                     sampling_rate.append(1. / data['duration'][0])
                     onset.append(data['onset'][0])
                 else:
-                    data = pd.read_csv(file.format(sub, run), sep=sep, header=None)
+                    data = pd.read_csv(f, sep=sep, header=None)
                     amplitudes.append(data.iloc[:, 2])
                     # get the frequency from duration data, and onset from onset
                     # we assume duration is in seconds
@@ -42,16 +45,21 @@ def main(files,
                     onset.append(data[:, 0][0])
                 # get the variable name for json
                 names.append(file.split('/')[-1].split('desc-')[-1].split('_regressors')[0])
+                # print(names)
                 # assert we have the same onsets and frequencies in all files:
             assert len(set(onset)) == 1
             assert len(set(sampling_rate)) == 1
 
             # build a new filename
-            basename = file.format(sub, run).split('/')[-1].split('_desc')[0]
-            pathname = os.path.dirname(file)
+            basename = f.split('/')[-1].split('_desc')[0]
+            pathname = os.path.dirname(f)
             # make a tsv.gz file from the amplitudes
             merge = pd.concat(amplitudes, axis=1)
-            merge.to_csv(pathname + '/' + basename + '_physio.tsv.gz', compression='gzip', sep='\t')
+            merge.to_csv(pathname + '/' + basename + '_physio.tsv.gz',
+                         compression='gzip',
+                         sep='\t',
+                         header=False,
+                         index=False)
             # write a json
             json_data = dict([("SamplingFrequency", sampling_rate[0]),
                               ("StartTime", onset[0]),
