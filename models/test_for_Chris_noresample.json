@@ -8,8 +8,7 @@
             "Level": "run",
             "Model": {
                 "X": [
-                    "amplitude_.RIGHT",
-                    "amplitude_.LEFT"
+                    "amplitude_.RIGHT"
                     ]
             },
             "Contrasts": [],
@@ -21,12 +20,12 @@
                 },
                {
                 "Name": "ToDense",
-                "Input": ["amplitude_.RIGHT", "amplitude_.LEFT"],
-                "SamplingRate": 1000
+                "Input": ["amplitude_.RIGHT"],
+                "SamplingRate": 100
                 },
                 {
                 "Name": "Convolve",
-                "Input": ["amplitude_.RIGHT", "amplitude_.LEFT"],
+                "Input": ["amplitude_.RIGHT"],
                 "Model": "spm"
                 }
                 ]
