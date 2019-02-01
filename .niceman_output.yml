@@ -1,0 +1,1656 @@
+# NICEMAN Environment Configuration File
+# This file was created by NICEMAN 0.1.0 on 2019-01-31 16:38:41.840874
+version: 0.0.1
+distributions:
+- name: venv
+  path: /usr/local/bin/virtualenv
+  venv_version: 15.2.0
+  environments:
+  - path: /home/adina/env/fitlins
+    python_version: 3.5.3
+    packages:
+    - name: ipykernel
+      version: 4.8.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: mistune
+      version: 0.8.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: websocket-client
+      version: 0.47.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: livereload
+      version: 2.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: flake8
+      version: 3.5.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: num2words
+      version: 0.5.7
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: rdflib
+      version: 4.2.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Whoosh
+      version: 2.7.4
+      location: /usr/lib/python3/dist-packages
+    - name: simplegeneric
+      version: 0.8.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: sphinxcontrib-paverutils
+      version: 1.17.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: EasyProcess
+      version: 0.2.5
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: boto
+      version: 2.44.0
+      location: /usr/lib/python3/dist-packages
+    - name: pexpect
+      version: 4.2.1
+      location: /usr/lib/python3/dist-packages
+    - name: ptyprocess
+      version: 0.5.1
+      location: /usr/lib/python3/dist-packages
+    - name: pyflakes
+      version: 1.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pytest-forked
+      version: '0.2'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: runestone
+      version: 3.3.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: cryptography
+      version: 2.2.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: virtualenv
+      version: 16.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: terminado
+      version: 0.8.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Babel
+      version: 2.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: statsmodels
+      version: 0.9.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: cogapp
+      version: 2.5.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: SQLAlchemy
+      version: 1.2.16
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyxdg
+      version: '0.25'
+      location: /usr/lib/python3/dist-packages
+    - name: jsonschema
+      version: 2.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: wrapt
+      version: 1.9.0
+      location: /usr/lib/python3/dist-packages
+    - name: future
+      version: 0.16.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: seaborn
+      version: 0.9.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: datalad-container
+      version: 0.2.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: fslpy
+      version: 1.12.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: pysmbc
+      version: 1.0.15.6
+      location: /usr/lib/python3/dist-packages
+    - name: MarkupSafe
+      version: '0.23'
+      location: /usr/lib/python3/dist-packages
+    - name: mkdocs
+      version: 1.0.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: nbformat
+      version: 4.4.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: alabaster
+      version: 0.7.12
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pbr
+      version: 1.10.0
+      location: /usr/lib/python3/dist-packages
+    - name: pydot
+      version: 1.2.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Mako
+      version: 1.0.6
+      location: /usr/lib/python3/dist-packages
+    - name: datalad
+      version: 0.11.1
+      location: /usr/lib/python3/dist-packages
+    - name: msgpack-python
+      version: 0.4.8
+      location: /usr/lib/python3/dist-packages
+    - name: atomicwrites
+      version: 1.2.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: GitPython
+      version: 2.1.8
+      location: /usr/lib/python3/dist-packages
+    - name: mutagen
+      version: '1.38'
+      location: /usr/lib/python3/dist-packages
+    - name: html5lib
+      version: 1.0.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: monotonic
+      version: '1.0'
+      location: /usr/lib/python3/dist-packages
+    - name: colorama
+      version: 0.3.7
+      location: /usr/lib/python3/dist-packages
+    - name: pytest-cov
+      version: 2.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: fabric
+      version: 2.4.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: simplejson
+      version: 3.10.0
+      location: /usr/lib/python3/dist-packages
+    - name: PyYAML
+      version: '3.12'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pytest
+      version: 3.7.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pickleshare
+      version: 0.7.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: nilearn
+      version: 0.4.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: matplotlib
+      version: 2.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: PyGithub
+      version: 1.26.0
+      location: /usr/lib/python3/dist-packages
+    - name: mccabe
+      version: 0.6.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: packaging
+      version: '18.0'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: humanize
+      version: 0.5.1
+      location: /usr/lib/python3/dist-packages
+    - name: traitlets
+      version: 4.3.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pytest-xdist
+      version: 1.23.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: tables
+      version: 3.3.0
+      location: /usr/lib/python3/dist-packages
+    - name: tqdm
+      version: 4.28.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: niceman
+      version: 0.1.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: pyasn1
+      version: 0.1.9
+      location: /usr/lib/python3/dist-packages
+    - name: python-magic
+      version: 0.4.15
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: plotly
+      version: 1.13.0
+      location: /usr/lib/python3/dist-packages
+    - name: pip
+      version: '18.1'
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: graphviz
+      version: '0.9'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: keyrings.alt
+      version: '1.3'
+      location: /usr/lib/python3/dist-packages
+    - name: funcsigs
+      version: 1.0.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: grabbit
+      version: 0.2.6+2.g83ff93d
+      local: true
+      location: /home/adina/Repos/grabbit
+      editable: true
+    - name: sphinxcontrib-websupport
+      version: 1.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: keyring
+      version: 12.0.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: beautifulsoup4
+      version: 4.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pygraphviz
+      version: '1.5'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: PyOpenGL
+      version: 3.1.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: rpaths
+      version: '0.13'
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: notebook
+      version: 5.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: appdirs
+      version: 1.4.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pymdown-extensions
+      version: '6.0'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: invoke
+      version: 1.2.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: PyNaCl
+      version: 1.3.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: minidb
+      version: 2.0.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Cython
+      version: 0.28.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: nistats
+      version: 0.0.1b0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: tornado
+      version: '5.1'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: twine
+      version: 1.12.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pep8
+      version: 1.7.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyzmq
+      version: 17.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: decorator
+      version: 4.3.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: mock
+      version: 2.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: pyOpenSSL
+      version: 16.2.0
+      location: /usr/lib/python3/dist-packages
+    - name: patsy
+      version: 0.5.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: testpath
+      version: 0.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: selenium
+      version: 3.141.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: idna
+      version: '2.6'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pycrypto
+      version: 2.6.1
+      location: /usr/lib/python3/dist-packages
+    - name: jupyter
+      version: 1.0.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyserial
+      version: 3.2.1
+      location: /usr/lib/python3/dist-packages
+    - name: attrs
+      version: 18.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: llvmlite
+      version: 0.24.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: readme-renderer
+      version: '24.0'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: python-datamatrix
+      version: 0.9.8
+      location: /home/adina/Repos/python-datamatrix
+      editable: true
+    - name: nibabel
+      version: 2.3.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Send2Trash
+      version: 1.5.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: cffi
+      version: 1.11.5
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: epdb
+      version: 0.15.1
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: pushbullet.py
+      version: 0.11.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyparsing
+      version: 2.1.10
+      location: /usr/lib/python3/dist-packages
+    - name: setuptools
+      version: 40.5.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: Brlapi
+      version: 0.6.5
+      location: /usr/lib/python3/dist-packages
+    - name: pydotplus
+      version: 2.0.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: sphinx-rtd-theme
+      version: 0.4.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Twisted
+      version: 16.6.0
+      location: /usr/lib/python3/dist-packages
+    - name: webencodings
+      version: 0.5.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: jupyter-core
+      version: 4.4.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: service-identity
+      version: 16.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: pandas
+      version: 0.23.4
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: chump
+      version: 1.5.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: python-xmp-toolkit
+      version: 2.0.1
+      location: /usr/lib/python3/dist-packages
+    - name: traits
+      version: 4.6.0
+      location: /usr/lib/python3/dist-packages
+    - name: deprecation
+      version: '1.2'
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: asn1crypto
+      version: 0.24.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: cupshelpers
+      version: '1.0'
+      location: /usr/lib/python3/dist-packages
+    - name: sympy
+      version: '1.3'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pkginfo
+      version: 1.4.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: prometheus-client
+      version: 0.3.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: h5py
+      version: 2.8.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: docutils
+      version: '0.14'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: wxPython
+      version: 4.0.3
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: louis
+      version: 3.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: mkdocs-material
+      version: 3.2.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: py
+      version: 1.5.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Sphinx
+      version: 1.8.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: smmap2
+      version: 2.0.1
+      location: /usr/lib/python3/dist-packages
+    - name: sklearn
+      version: '0.0'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: argcomplete
+      version: 1.8.1
+      location: /usr/lib/python3/dist-packages
+    - name: fasteners
+      version: 0.12.0
+      location: /usr/lib/python3/dist-packages
+    - name: altair
+      version: 2.3.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: python-debian
+      version: 0.1.30
+      location: /usr/lib/python3/dist-packages
+    - name: neurdflib
+      version: 5.0.0.post1
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: fsleyes-props
+      version: 1.6.4
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: Markdown
+      version: 3.0.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: SecretStorage
+      version: 2.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: wheel
+      version: 0.32.2
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: joblib
+      version: 0.13.0
+      location: /usr/lib/python3/dist-packages
+    - name: isodate
+      version: 0.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: parso
+      version: 0.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: prov
+      version: 1.5.3
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: nipype
+      version: 1.1.8.dev0+gf2a21fdf7
+      local: true
+      location: /home/adina/Repos/nipype
+      editable: true
+    - name: gitdb2
+      version: 2.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: pytz
+      version: '2016.7'
+      location: /usr/lib/python3/dist-packages
+    - name: imagesize
+      version: 1.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: PyOpenGL-accelerate
+      version: 3.1.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: httpretty
+      version: 0.8.14
+      location: /usr/lib/python3/dist-packages
+    - name: youtube-dl
+      version: 2017.5.18.1
+      location: /usr/lib/python3/dist-packages
+    - name: dipy
+      version: 0.14.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: cycler
+      version: 0.10.0
+      location: /usr/lib/python3/dist-packages
+    - name: jedi
+      version: 0.12.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pycodestyle
+      version: 2.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: unattended-upgrades
+      version: '0.1'
+      location: /usr/lib/python3/dist-packages
+    - name: Jinja2
+      version: '2.10'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pybids
+      version: 0.7.0+13.g801c2f1
+      local: true
+      location: /home/adina/Repos/pybids
+      editable: true
+    - name: incremental
+      version: 16.10.1
+      location: /usr/lib/python3/dist-packages
+    - name: requests
+      version: 2.18.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pandocfilters
+      version: 1.4.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: reportlab
+      version: 3.3.0
+      location: /usr/lib/python3/dist-packages
+    - name: qtconsole
+      version: 4.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: nbconvert
+      version: 5.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: iso8601
+      version: 0.1.11
+      location: /usr/lib/python3/dist-packages
+    - name: python-coveralls
+      version: 2.9.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: more-itertools
+      version: 4.3.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: scipy
+      version: 1.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: jupyter-client
+      version: 5.2.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: bs4
+      version: 0.0.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pluggy
+      version: 0.7.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: scp
+      version: 0.13.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: ExifRead
+      version: 2.1.2
+      location: /usr/lib/python3/dist-packages
+    - name: widgetsnbextension
+      version: 3.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: usagestats
+      version: '0.7'
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: ipython
+      version: 6.4.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: urllib3
+      version: '1.22'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: backcall
+      version: 0.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: bcrypt
+      version: 3.1.6
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: certifi
+      version: 2018.1.18
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: datamatrix
+      version: '0.9'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: vcrpy
+      version: 1.10.0
+      location: /usr/lib/python3/dist-packages
+    - name: Paver
+      version: 1.3.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pycparser
+      version: '2.18'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: python-dateutil
+      version: 2.5.3
+      location: /usr/lib/python3/dist-packages
+    - name: jsmin
+      version: 2.2.1
+      location: /usr/lib/python3/dist-packages
+    - name: scikit-learn
+      version: 0.20.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Pygments
+      version: 2.2.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: prompt-toolkit
+      version: 1.0.15
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: zope.interface
+      version: 4.3.2
+      location: /usr/lib/python3/dist-packages
+    - name: nipy
+      version: 0.4.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyperclip
+      version: 1.6.0
+      location: /usr/lib/python3/dist-packages
+    - name: entrypoints
+      version: 0.2.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: ipywidgets
+      version: 7.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: apipkg
+      version: '1.5'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: requests-toolbelt
+      version: 0.8.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: networkx
+      version: '2.2'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Pypubsub
+      version: 4.0.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: wcwidth
+      version: 0.1.7
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: chardet
+      version: 3.0.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: lxml
+      version: 4.2.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: ezodf
+      version: 0.3.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pygobject
+      version: 3.22.0
+      location: /usr/lib/python3/dist-packages
+    - name: mpmath
+      version: 1.0.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyasn1-modules
+      version: 0.0.7
+      location: /usr/lib/python3/dist-packages
+    - name: paramiko
+      version: 2.4.2
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: Pillow
+      version: 4.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: pycurl
+      version: 7.43.0
+      location: /usr/lib/python3/dist-packages
+    - name: fsleyes
+      version: 0.26.4
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: pycups
+      version: 1.9.73
+      location: /usr/lib/python3/dist-packages
+    - name: python-apt
+      version: 1.4.0b3
+      location: /usr/lib/python3/dist-packages
+    - name: snowballstemmer
+      version: 1.2.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: numexpr
+      version: 2.6.2
+      location: /usr/lib/python3/dist-packages
+    - name: pathlib2
+      version: 2.3.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: nose
+      version: 1.3.7
+      location: /usr/lib/python3/dist-packages
+    - name: patool
+      version: '1.12'
+      location: /usr/lib/python3/dist-packages
+    - name: execnet
+      version: 1.5.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: reprozip
+      version: 1.0.14
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: click
+      version: '6.6'
+      location: /usr/lib/python3/dist-packages
+    - name: jupyter-console
+      version: 5.2.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: PyVirtualDisplay
+      version: 0.2.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: six
+      version: 1.10.0
+      location: /usr/lib/python3/dist-packages
+    - name: fitlins
+      version: 0.1.0+70.gb3c2267
+      local: true
+      location: /home/adina/Repos/fitlins
+      editable: true
+    - name: bleach
+      version: 2.1.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: numpy
+      version: 1.15.3
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: coverage
+      version: 4.5.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: ipython-genutils
+      version: 0.2.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: numba
+      version: 0.39.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pypandoc
+      version: '1.4'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: toolz
+      version: 0.9.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: fsleyes-widgets
+      version: 0.7.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: configparser
+      version: 3.5.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: constantly
+      version: 15.1.0
+      location: /usr/lib/python3/dist-packages
+- name: git
+  packages:
+  - path: /home/adina/Repos/python-datamatrix
+    root_hexsha: 21cfd59476538fbec9a9a0b6b7520af7fe34ac22
+    branch: '0.9'
+    hexsha: 618c3e8b30749c8b330f97793610c101316250b5
+    describe: release/0.9.8-1-g618c3e8
+    tracked_remote: origin
+    remotes:
+      origin:
+        contains: true
+        url: git@github.com:smathot/python-datamatrix.git
+  - path: /home/adina/Repos/nipype
+    root_hexsha: 4e27c23d9f5f0526ec58b62c6749b16b3a3e2021
+    branch: master
+    hexsha: f2a21fdf7968aa6c68652302491e0af178e4adf9
+    describe: 1.1.7-45-gf2a21fdf7
+    tracked_remote: adinawagner
+    remotes:
+      adinawagner:
+        url: https://github.com/AdinaWagner/nipype.git
+      origin:
+        contains: true
+        url: https://github.com/nipy/nipype.git
+  - path: /home/adina/Repos/pybids
+    root_hexsha: 9e23495a60b43cfdd74b3019c5f64adf5443c0f4
+    branch: runinfo-merge
+    hexsha: c9b1d16198fe4b90862dcc466b361110ebb8dac3
+    describe: 0.7.0-41-gc9b1d16
+    tracked_remote: upstream
+    remotes:
+      effigies:
+        url: https://github.com/effigies/pybids
+      gh-yarikoptic:
+        url: https://github.com/yarikoptic/pybids
+      origin:
+        url: git@github.com:bids-standard/pybids.git
+      upstream:
+        contains: true
+        url: git@github.com:AdinaWagner/pybids.git
+  - path: /home/adina/Repos/grabbit
+    root_hexsha: b6e8595607b259fd06fd908bf587937383cead0b
+    branch: master
+    hexsha: 83ff93df36019eaaee9d4e31f816a518e46cae07
+    describe: 0.2.6-2-g83ff93d
+    tracked_remote: origin
+    remotes:
+      origin:
+        contains: true
+        url: git@github.com:grabbles/grabbit.git
+  - path: /home/adina/Repos/fitlins
+    root_hexsha: b6fdf36f5451d8d51d520bd04e3fd5d30a698be1
+    branch: BIDSSacc
+    hexsha: 38feeae4c0caf1b022349829830cc74eeca7a70a
+    describe: 0.1.0-74-g38feeae
+    tracked_remote: AdinaWagner
+    remotes:
+      AdinaWagner:
+        contains: true
+        url: git@github.com:AdinaWagner/fitlins.git
+      origin:
+        url: git@github.com:poldracklab/fitlins.git
+- name: venv
+  path: /usr/local/bin/virtualenv
+  venv_version: 15.2.0
+  environments:
+  - path: /home/adina/env/fitlins
+    python_version: 3.5.3
+    packages:
+    - name: ipykernel
+      version: 4.8.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: mistune
+      version: 0.8.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: websocket-client
+      version: 0.47.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: livereload
+      version: 2.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: flake8
+      version: 3.5.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: num2words
+      version: 0.5.7
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: rdflib
+      version: 4.2.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Whoosh
+      version: 2.7.4
+      location: /usr/lib/python3/dist-packages
+    - name: simplegeneric
+      version: 0.8.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: sphinxcontrib-paverutils
+      version: 1.17.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: EasyProcess
+      version: 0.2.5
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: boto
+      version: 2.44.0
+      location: /usr/lib/python3/dist-packages
+    - name: pexpect
+      version: 4.2.1
+      location: /usr/lib/python3/dist-packages
+    - name: ptyprocess
+      version: 0.5.1
+      location: /usr/lib/python3/dist-packages
+    - name: pyflakes
+      version: 1.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pytest-forked
+      version: '0.2'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: runestone
+      version: 3.3.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: cryptography
+      version: 2.2.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: virtualenv
+      version: 16.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: terminado
+      version: 0.8.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Babel
+      version: 2.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: statsmodels
+      version: 0.9.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: cogapp
+      version: 2.5.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: SQLAlchemy
+      version: 1.2.16
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyxdg
+      version: '0.25'
+      location: /usr/lib/python3/dist-packages
+    - name: jsonschema
+      version: 2.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: wrapt
+      version: 1.9.0
+      location: /usr/lib/python3/dist-packages
+    - name: future
+      version: 0.16.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: seaborn
+      version: 0.9.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: datalad-container
+      version: 0.2.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: fslpy
+      version: 1.12.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: pysmbc
+      version: 1.0.15.6
+      location: /usr/lib/python3/dist-packages
+    - name: MarkupSafe
+      version: '0.23'
+      location: /usr/lib/python3/dist-packages
+    - name: mkdocs
+      version: 1.0.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: nbformat
+      version: 4.4.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: alabaster
+      version: 0.7.12
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pbr
+      version: 1.10.0
+      location: /usr/lib/python3/dist-packages
+    - name: pydot
+      version: 1.2.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Mako
+      version: 1.0.6
+      location: /usr/lib/python3/dist-packages
+    - name: datalad
+      version: 0.11.1
+      location: /usr/lib/python3/dist-packages
+    - name: msgpack-python
+      version: 0.4.8
+      location: /usr/lib/python3/dist-packages
+    - name: atomicwrites
+      version: 1.2.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: GitPython
+      version: 2.1.8
+      location: /usr/lib/python3/dist-packages
+    - name: mutagen
+      version: '1.38'
+      location: /usr/lib/python3/dist-packages
+    - name: html5lib
+      version: 1.0.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: monotonic
+      version: '1.0'
+      location: /usr/lib/python3/dist-packages
+    - name: colorama
+      version: 0.3.7
+      location: /usr/lib/python3/dist-packages
+    - name: pytest-cov
+      version: 2.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: fabric
+      version: 2.4.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: simplejson
+      version: 3.10.0
+      location: /usr/lib/python3/dist-packages
+    - name: PyYAML
+      version: '3.12'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pytest
+      version: 3.7.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pickleshare
+      version: 0.7.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: nilearn
+      version: 0.4.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: matplotlib
+      version: 2.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: PyGithub
+      version: 1.26.0
+      location: /usr/lib/python3/dist-packages
+    - name: mccabe
+      version: 0.6.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: packaging
+      version: '18.0'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: humanize
+      version: 0.5.1
+      location: /usr/lib/python3/dist-packages
+    - name: traitlets
+      version: 4.3.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pytest-xdist
+      version: 1.23.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: tables
+      version: 3.3.0
+      location: /usr/lib/python3/dist-packages
+    - name: tqdm
+      version: 4.28.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: niceman
+      version: 0.1.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: pyasn1
+      version: 0.1.9
+      location: /usr/lib/python3/dist-packages
+    - name: python-magic
+      version: 0.4.15
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: plotly
+      version: 1.13.0
+      location: /usr/lib/python3/dist-packages
+    - name: pip
+      version: '18.1'
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: graphviz
+      version: '0.9'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: keyrings.alt
+      version: '1.3'
+      location: /usr/lib/python3/dist-packages
+    - name: funcsigs
+      version: 1.0.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: grabbit
+      version: 0.2.6+2.g83ff93d
+      local: true
+      location: /home/adina/Repos/grabbit
+      editable: true
+    - name: sphinxcontrib-websupport
+      version: 1.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: keyring
+      version: 12.0.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: beautifulsoup4
+      version: 4.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pygraphviz
+      version: '1.5'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: PyOpenGL
+      version: 3.1.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: rpaths
+      version: '0.13'
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: notebook
+      version: 5.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: appdirs
+      version: 1.4.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pymdown-extensions
+      version: '6.0'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: invoke
+      version: 1.2.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: PyNaCl
+      version: 1.3.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: minidb
+      version: 2.0.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Cython
+      version: 0.28.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: nistats
+      version: 0.0.1b0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: tornado
+      version: '5.1'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: twine
+      version: 1.12.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pep8
+      version: 1.7.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyzmq
+      version: 17.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: decorator
+      version: 4.3.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: mock
+      version: 2.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: pyOpenSSL
+      version: 16.2.0
+      location: /usr/lib/python3/dist-packages
+    - name: patsy
+      version: 0.5.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: testpath
+      version: 0.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: selenium
+      version: 3.141.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: idna
+      version: '2.6'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pycrypto
+      version: 2.6.1
+      location: /usr/lib/python3/dist-packages
+    - name: jupyter
+      version: 1.0.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyserial
+      version: 3.2.1
+      location: /usr/lib/python3/dist-packages
+    - name: attrs
+      version: 18.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: llvmlite
+      version: 0.24.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: readme-renderer
+      version: '24.0'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: python-datamatrix
+      version: 0.9.8
+      location: /home/adina/Repos/python-datamatrix
+      editable: true
+    - name: nibabel
+      version: 2.3.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Send2Trash
+      version: 1.5.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: cffi
+      version: 1.11.5
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: epdb
+      version: 0.15.1
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: pushbullet.py
+      version: 0.11.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyparsing
+      version: 2.1.10
+      location: /usr/lib/python3/dist-packages
+    - name: setuptools
+      version: 40.5.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: Brlapi
+      version: 0.6.5
+      location: /usr/lib/python3/dist-packages
+    - name: pydotplus
+      version: 2.0.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: sphinx-rtd-theme
+      version: 0.4.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Twisted
+      version: 16.6.0
+      location: /usr/lib/python3/dist-packages
+    - name: webencodings
+      version: 0.5.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: jupyter-core
+      version: 4.4.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: service-identity
+      version: 16.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: pandas
+      version: 0.23.4
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: chump
+      version: 1.5.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: python-xmp-toolkit
+      version: 2.0.1
+      location: /usr/lib/python3/dist-packages
+    - name: traits
+      version: 4.6.0
+      location: /usr/lib/python3/dist-packages
+    - name: deprecation
+      version: '1.2'
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: asn1crypto
+      version: 0.24.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: cupshelpers
+      version: '1.0'
+      location: /usr/lib/python3/dist-packages
+    - name: sympy
+      version: '1.3'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pkginfo
+      version: 1.4.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: prometheus-client
+      version: 0.3.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: h5py
+      version: 2.8.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: docutils
+      version: '0.14'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: wxPython
+      version: 4.0.3
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: louis
+      version: 3.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: mkdocs-material
+      version: 3.2.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: py
+      version: 1.5.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Sphinx
+      version: 1.8.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: smmap2
+      version: 2.0.1
+      location: /usr/lib/python3/dist-packages
+    - name: sklearn
+      version: '0.0'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: argcomplete
+      version: 1.8.1
+      location: /usr/lib/python3/dist-packages
+    - name: fasteners
+      version: 0.12.0
+      location: /usr/lib/python3/dist-packages
+    - name: altair
+      version: 2.3.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: python-debian
+      version: 0.1.30
+      location: /usr/lib/python3/dist-packages
+    - name: neurdflib
+      version: 5.0.0.post1
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: fsleyes-props
+      version: 1.6.4
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: Markdown
+      version: 3.0.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: SecretStorage
+      version: 2.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: wheel
+      version: 0.32.2
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: joblib
+      version: 0.13.0
+      location: /usr/lib/python3/dist-packages
+    - name: isodate
+      version: 0.6.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: parso
+      version: 0.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: prov
+      version: 1.5.3
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: nipype
+      version: 1.1.8.dev0+gf2a21fdf7
+      local: true
+      location: /home/adina/Repos/nipype
+      editable: true
+    - name: gitdb2
+      version: 2.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: pytz
+      version: '2016.7'
+      location: /usr/lib/python3/dist-packages
+    - name: imagesize
+      version: 1.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: PyOpenGL-accelerate
+      version: 3.1.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: httpretty
+      version: 0.8.14
+      location: /usr/lib/python3/dist-packages
+    - name: youtube-dl
+      version: 2017.5.18.1
+      location: /usr/lib/python3/dist-packages
+    - name: dipy
+      version: 0.14.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: cycler
+      version: 0.10.0
+      location: /usr/lib/python3/dist-packages
+    - name: jedi
+      version: 0.12.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pycodestyle
+      version: 2.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: unattended-upgrades
+      version: '0.1'
+      location: /usr/lib/python3/dist-packages
+    - name: Jinja2
+      version: '2.10'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pybids
+      version: 0.7.0+13.g801c2f1
+      local: true
+      location: /home/adina/Repos/pybids
+      editable: true
+    - name: incremental
+      version: 16.10.1
+      location: /usr/lib/python3/dist-packages
+    - name: requests
+      version: 2.18.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pandocfilters
+      version: 1.4.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: reportlab
+      version: 3.3.0
+      location: /usr/lib/python3/dist-packages
+    - name: qtconsole
+      version: 4.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: nbconvert
+      version: 5.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: iso8601
+      version: 0.1.11
+      location: /usr/lib/python3/dist-packages
+    - name: python-coveralls
+      version: 2.9.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: more-itertools
+      version: 4.3.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: scipy
+      version: 1.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: jupyter-client
+      version: 5.2.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: bs4
+      version: 0.0.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pluggy
+      version: 0.7.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: scp
+      version: 0.13.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: ExifRead
+      version: 2.1.2
+      location: /usr/lib/python3/dist-packages
+    - name: widgetsnbextension
+      version: 3.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: usagestats
+      version: '0.7'
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: ipython
+      version: 6.4.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: urllib3
+      version: '1.22'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: backcall
+      version: 0.1.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: bcrypt
+      version: 3.1.6
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: certifi
+      version: 2018.1.18
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: datamatrix
+      version: '0.9'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: vcrpy
+      version: 1.10.0
+      location: /usr/lib/python3/dist-packages
+    - name: Paver
+      version: 1.3.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pycparser
+      version: '2.18'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: python-dateutil
+      version: 2.5.3
+      location: /usr/lib/python3/dist-packages
+    - name: jsmin
+      version: 2.2.1
+      location: /usr/lib/python3/dist-packages
+    - name: scikit-learn
+      version: 0.20.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Pygments
+      version: 2.2.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: prompt-toolkit
+      version: 1.0.15
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: zope.interface
+      version: 4.3.2
+      location: /usr/lib/python3/dist-packages
+    - name: nipy
+      version: 0.4.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyperclip
+      version: 1.6.0
+      location: /usr/lib/python3/dist-packages
+    - name: entrypoints
+      version: 0.2.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: ipywidgets
+      version: 7.3.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: apipkg
+      version: '1.5'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: requests-toolbelt
+      version: 0.8.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: networkx
+      version: '2.2'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: Pypubsub
+      version: 4.0.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: wcwidth
+      version: 0.1.7
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: chardet
+      version: 3.0.4
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: lxml
+      version: 4.2.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: ezodf
+      version: 0.3.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pygobject
+      version: 3.22.0
+      location: /usr/lib/python3/dist-packages
+    - name: mpmath
+      version: 1.0.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pyasn1-modules
+      version: 0.0.7
+      location: /usr/lib/python3/dist-packages
+    - name: paramiko
+      version: 2.4.2
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: Pillow
+      version: 4.0.0
+      location: /usr/lib/python3/dist-packages
+    - name: pycurl
+      version: 7.43.0
+      location: /usr/lib/python3/dist-packages
+    - name: fsleyes
+      version: 0.26.4
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: pycups
+      version: 1.9.73
+      location: /usr/lib/python3/dist-packages
+    - name: python-apt
+      version: 1.4.0b3
+      location: /usr/lib/python3/dist-packages
+    - name: snowballstemmer
+      version: 1.2.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: numexpr
+      version: 2.6.2
+      location: /usr/lib/python3/dist-packages
+    - name: pathlib2
+      version: 2.3.2
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: nose
+      version: 1.3.7
+      location: /usr/lib/python3/dist-packages
+    - name: patool
+      version: '1.12'
+      location: /usr/lib/python3/dist-packages
+    - name: execnet
+      version: 1.5.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: reprozip
+      version: 1.0.14
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: click
+      version: '6.6'
+      location: /usr/lib/python3/dist-packages
+    - name: jupyter-console
+      version: 5.2.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: PyVirtualDisplay
+      version: 0.2.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: six
+      version: 1.10.0
+      location: /usr/lib/python3/dist-packages
+    - name: fitlins
+      version: 0.1.0+70.gb3c2267
+      local: true
+      location: /home/adina/Repos/fitlins
+      editable: true
+    - name: bleach
+      version: 2.1.3
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: numpy
+      version: 1.15.3
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: coverage
+      version: 4.5.1
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: ipython-genutils
+      version: 0.2.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: numba
+      version: 0.39.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: pypandoc
+      version: '1.4'
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: toolz
+      version: 0.9.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: fsleyes-widgets
+      version: 0.7.0
+      local: true
+      location: /home/adina/env/fitlins/lib/python3.5/site-packages
+    - name: configparser
+      version: 3.5.0
+      location: /usr/local/lib/python3.5/dist-packages
+    - name: constantly
+      version: 15.1.0
+      location: /usr/lib/python3/dist-packages
+- name: git
+  packages:
+  - path: /home/adina/Repos/python-datamatrix
+    root_hexsha: 21cfd59476538fbec9a9a0b6b7520af7fe34ac22
+    branch: '0.9'
+    hexsha: 618c3e8b30749c8b330f97793610c101316250b5
+    describe: release/0.9.8-1-g618c3e8
+    tracked_remote: origin
+    remotes:
+      origin:
+        contains: true
+        url: git@github.com:smathot/python-datamatrix.git
+  - path: /home/adina/Repos/nipype
+    root_hexsha: 4e27c23d9f5f0526ec58b62c6749b16b3a3e2021
+    branch: master
+    hexsha: f2a21fdf7968aa6c68652302491e0af178e4adf9
+    describe: 1.1.7-45-gf2a21fdf7
+    tracked_remote: adinawagner
+    remotes:
+      adinawagner:
+        url: https://github.com/AdinaWagner/nipype.git
+      origin:
+        contains: true
+        url: https://github.com/nipy/nipype.git
+  - path: /home/adina/Repos/pybids
+    root_hexsha: 9e23495a60b43cfdd74b3019c5f64adf5443c0f4
+    branch: runinfo-merge
+    hexsha: c9b1d16198fe4b90862dcc466b361110ebb8dac3
+    describe: 0.7.0-41-gc9b1d16
+    tracked_remote: upstream
+    remotes:
+      effigies:
+        url: https://github.com/effigies/pybids
+      gh-yarikoptic:
+        url: https://github.com/yarikoptic/pybids
+      origin:
+        url: git@github.com:bids-standard/pybids.git
+      upstream:
+        contains: true
+        url: git@github.com:AdinaWagner/pybids.git
+  - path: /home/adina/Repos/grabbit
+    root_hexsha: b6e8595607b259fd06fd908bf587937383cead0b
+    branch: master
+    hexsha: 83ff93df36019eaaee9d4e31f816a518e46cae07
+    describe: 0.2.6-2-g83ff93d
+    tracked_remote: origin
+    remotes:
+      origin:
+        contains: true
+        url: git@github.com:grabbles/grabbit.git
+  - path: /home/adina/Repos/fitlins
+    root_hexsha: b6fdf36f5451d8d51d520bd04e3fd5d30a698be1
+    branch: BIDSSacc
+    hexsha: 38feeae4c0caf1b022349829830cc74eeca7a70a
+    describe: 0.1.0-74-g38feeae
+    tracked_remote: AdinaWagner
+    remotes:
+      AdinaWagner:
+        contains: true
+        url: git@github.com:AdinaWagner/fitlins.git
+      origin:
+        url: git@github.com:poldracklab/fitlins.git
+files:
+- /home/adina/env/fitlins
+- /usr/lib/python3/dist-packages
+- /usr/local/lib/python3.5/dist-packages
