@@ -35,12 +35,12 @@
                 "By": ["trial_type"]
                 },
                {
-                "Name": "Or",
+                "Name": "And",
                 "Input": ["amplitude_.RIGHT", "amplitude_.LEFT"],
                 "Output": ["horizontal"]
                 },
                 {
-                "Name": "Or",
+                "Name": "And",
                 "Input": ["amplitude_.UP", "amplitude_.DOWN"],
                 "Output": ["vertical"]
                 },
