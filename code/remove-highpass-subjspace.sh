@@ -6,4 +6,4 @@
 
 set -eu
 
-git rm sub-*/*/*/*run-{1..2}_desc-highpass_bold*
+git rm sub-*/*/*/*run-{1..8}_desc-highpass_bold*
