@@ -1,0 +1,1 @@
+../../../../../../.git/annex/objects/kz/mx/MD5E-s6226--23515bb834ea87625e601ba239736b43.rst/MD5E-s6226--23515bb834ea87625e601ba239736b43.rst
