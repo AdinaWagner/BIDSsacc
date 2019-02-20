@@ -3,6 +3,7 @@
 import pandas as pd
 from glob import glob
 import matplotlib.pyplot as plt
+import matplotlib.ticker
 
 """
 A small last minute script to analyze and plot a couple of 
@@ -32,10 +33,21 @@ def main(input,
                                (events.trial_type == 'UP') |
                                (events.trial_type == 'DOWN')]
 
-    # plot
+    # plot saccade counts
     fig, ax = plt.subplots()
-    subset.value_counts().plot(ax=ax, kind='barh', title = 'total saccade counts per direction', colormap='viridis', grid = True)
-    plt.savefig(outputpath)
+    subset.value_counts().plot(ax=ax,
+                               kind='barh',
+                               title = 'total saccade counts per direction', colormap='viridis', grid = True)
+    plt.savefig(outputpath + 'saccade_lengths.png')
+
+    # plot saccade lengths
+    fig, ax = plt.subplots()
+    plt.hist(events.amplitude,
+             bins='auto',
+             color = 'slategray')
+    ax.set_yscale('log')
+    ax.get_yaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+    plt.savefig(outputpath + 'saccade_amplitudes.png')
 
     # count stuff and print it to terminal
     counts = events['trial_type'].value_counts()
